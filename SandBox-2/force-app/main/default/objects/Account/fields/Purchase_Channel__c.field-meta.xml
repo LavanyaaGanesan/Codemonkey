@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Purchase_Channel__c</fullName>
+    <externalId>false</externalId>
+    <label>Purchase Channel</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+                <label>Distributor</label>
+            </value>
+            <value>
+                <fullName>Wholesaler</fullName>
+                <default>false</default>
+                <label>Wholesaler</label>
+            </value>
+            <value>
+                <fullName>Direct</fullName>
+                <default>false</default>
+                <label>Direct</label>
+            </value>
+            <value>
+                <fullName>Direct and Wholesaler</fullName>
+                <default>false</default>
+                <label>Direct and Wholesaler</label>
+            </value>
+            <value>
+                <fullName>Direct and Distributor</fullName>
+                <default>false</default>
+                <label>Direct and Distributor</label>
+            </value>
+            <value>
+                <fullName>Wholesaler and Distributor</fullName>
+                <default>false</default>
+                <label>Wholesaler and Distributor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

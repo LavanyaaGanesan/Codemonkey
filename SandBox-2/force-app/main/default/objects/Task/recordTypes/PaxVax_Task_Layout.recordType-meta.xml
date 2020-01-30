@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PaxVax_Task_Layout</fullName>
+    <active>true</active>
+    <label>PaxVax Task</label>
+    <picklistValues>
+        <picklist>Call_Stage__c</picklist>
+        <values>
+            <fullName>Commitment Gained</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disease%2FProduct Introduction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meaningful Dialogue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Objection Handling</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Closed_Reasons__c</picklist>
+        <values>
+            <fullName>Closed Health facility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not a travel vaccination outlet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pediatric facility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prescriber</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Storage</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Discussed__c</picklist>
+        <values>
+            <fullName>Business Related</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif and Vaxchora</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Resources_Left__c</picklist>
+        <values>
+            <fullName>%28Chen%29 White Envelope</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>%28Herzog%29 White Envelope</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ali Booklets %28Feb 2017%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount Program %E2%80%93 Existing Customers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount Program %E2%80%93 New Customers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discount Program %E2%80%93 Pay in Full</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IDSA Guide</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In-office Savings Cards %285x7%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MMWR Booklets</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Map %28In-office poster%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>None</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Patient Profiler</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Traveler%E2%80%99s Companion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unbranded Brochure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Flashcard</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Getting Ready Tip Sheet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora HCP Flashcard %E2%80%93 8 million</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora HCP Flashcard %E2%80%93 98 %25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora HCP Leave Behind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora PI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Patient Brochure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Patient Brochure w%2E QR Code</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Product Monograph</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Reconstitution Clingz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vaxchora Scheduler Clingz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Dosing Admin Clingz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Leave Behind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Orange Refrigeration Stickers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif PI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Patient Brochure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Pouchettes w%2F PI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vivotif Product Monograph</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Open</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Subject</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Person</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone Call</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Person</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PTO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone Call</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voicemail</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Vaxchora_Call_Stage__c</picklist>
+        <values>
+            <fullName>Commitment Gained</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disease%2FProduct Introduction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Meaningful Dialogue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Objection Handling</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,60 @@
+.THIS {
+}
+.THIS .slds-box {
+     padding: 0px; 
+     border-radius: 0px; 
+    border: 0px solid rgb(217, 219, 221); 
+}
+.THIS .slds-card__header{
+    padding:0px;
+    margin: 0px;
+}
+
+.THIS .slds-m-around--small {
+    margin: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.THIS .customHeader{
+    background:rgb(243, 242, 242);
+    margin:5px 0px 5px 0px;
+    border-radius: .25rem;
+    min-height: 60px;
+}
+.THIS .text-right {
+    text-align:right;
+}
+.THIS .rightSpace {
+    padding-right:7px;
+    padding-top:2px;
+}
+.THIS .fullPage{
+    width:100%;
+}
+.THIS .centerText{
+    text-align:center;
+}
+.THIS .leftText{
+    text-align:left;
+}
+.THIS .rightText{
+    text-align:right;
+}
+
+.THIS{
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.THIS .sWrapTest {
+    max-height:200px;
+   
+}
+.THIS .sWrapTestMobile {
+    max-height:auto;
+    
+}

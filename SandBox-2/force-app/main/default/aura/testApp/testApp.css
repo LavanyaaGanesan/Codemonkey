@@ -1,0 +1,8 @@
+.THIS.toggle {
+    background: red;
+    margin: 3px;
+    width: 80px;
+    height: 40px;
+    display: none;
+    position:relative;
+  }

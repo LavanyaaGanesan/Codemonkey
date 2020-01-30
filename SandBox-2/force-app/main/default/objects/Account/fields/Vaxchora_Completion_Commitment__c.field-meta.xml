@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Completion_Commitment__c</fullName>
+    <externalId>false</externalId>
+    <formula>Vaxchora_Ordered_Doses__c / Vaxchora_Dose_Commitment__c</formula>
+    <inlineHelpText>It shows the percentage of doses ordered with respect to commitment.</inlineHelpText>
+    <label>Vaxchora (% Completion) Commitment</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Percent</type>
+</CustomField>

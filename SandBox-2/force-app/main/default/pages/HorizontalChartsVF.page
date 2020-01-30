@@ -1,0 +1,24 @@
+<apex:page standardController="Sales_Planner__c">
+    
+  	<apex:includeLightning />
+     
+    <div id="divChart" />
+    
+    <script>
+    console.log('----');
+    $Lightning.use("c:HorizontalChartsApp", function() {
+        $Lightning.createComponent("c:HorizontalCharts",
+                                   {"recordId" : "{!Sales_Planner__c.id}"},
+                                   "divChart",
+                                   function(cmp) {
+                                       console.log("Component created!");
+                                       console.log(cmp);
+                                       //console.log('{!Sales_Planner__c.id}----');
+                                       //cmp.set("v.recordId", "{!Sales_Planner__c.id}");
+                                       //console.log("button was created");
+                                       // do some stuff
+                                   }
+                                  );
+    });
+    </script>
+</apex:page>

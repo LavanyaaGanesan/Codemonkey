@@ -1,0 +1,11 @@
+.THIS .dropSection {
+        display:none;
+  }
+
+.THIS .hoverData:hover .dropSection {
+    display:block;
+    position:relative;
+    background-color:red;
+    padding:10px;
+    width:300px;
+  }

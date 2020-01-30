@@ -1,0 +1,23 @@
+<apex:page standardController="Account" >
+    <apex:includeLightning />
+        <apex:includeScript value="/lightning/lightning.out.js" />
+
+    <div id="acc" />
+     <script style="float:left;">
+        $Lightning.use("c:AccountHierarchyApp", function() {
+          $Lightning.createComponent("c:AccountHierarchyCmp",
+              { "recordId" : "{!Account.id}"},
+              "acc",
+              function(cmp) {
+                  
+                  // console.log("Component created!");
+                  // console.log(cmp);
+                  // console.log('{!Account.id}----');
+                  //cmp.set("v.recordId", "{!Account.id}");
+                //console.log("button was created");
+                // do some stuff
+              }
+          );
+        });
+    </script>
+</apex:page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>R12_Vivotif_Market_Share__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(R12_Total_Typhoid_Fever_Vaccine__c &lt;&gt; 0,
+(R12_Vivotif_Total__c / R12_Total_Typhoid_Fever_Vaccine__c),0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>R12 Vivotif Market Share %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <type>Percent</type>
+</CustomField>

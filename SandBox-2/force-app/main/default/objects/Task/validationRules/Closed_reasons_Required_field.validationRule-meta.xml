@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_reasons_Required_field</fullName>
+    <active>true</active>
+    <description>The Closed Reasons will become reqd field when Closed/Not Viable is chosen from the picklist.</description>
+    <errorConditionFormula>And( 
+
+ISPICKVAL( Call_Stage__c ,&quot;Closed/Not Viable&quot;), 
+
+ISBLANK(TEXT( Closed_Reasons__c )))</errorConditionFormula>
+    <errorDisplayField>Closed_Reasons__c</errorDisplayField>
+    <errorMessage>Select a picklist value from &quot;Closed reasons&quot; field to save the record.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DaysSinceLastActivityDate__c</fullName>
+    <description>It is difference between the number of  activity days and today.</description>
+    <externalId>false</externalId>
+    <formula>Min(Today()- ActivityDate)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>For Reporting purpose</inlineHelpText>
+    <label>DaysSinceLastActivityDate</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

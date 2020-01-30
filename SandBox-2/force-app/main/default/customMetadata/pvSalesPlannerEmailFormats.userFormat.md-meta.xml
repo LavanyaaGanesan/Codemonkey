@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>userFormat</label>
+    <protected>false</protected>
+    <values>
+        <field>body__c</field>
+        <value xsi:type="xsd:string">Dear  &lt;b&gt;##OWNER##&lt;/b&gt;,&lt;br/&gt;&lt;br/&gt; 
+Please find attached activity report of your assigned accounts for your review.&lt;br/&gt;&lt;br/&gt; 
+Thank you.</value>
+    </values>
+    <values>
+        <field>subject__c</field>
+        <value xsi:type="xsd:string">Reminder: SalesPlanner - Inperson Activity not logged</value>
+    </values>
+</CustomMetadata>

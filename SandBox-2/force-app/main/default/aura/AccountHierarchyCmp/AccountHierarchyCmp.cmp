@@ -1,0 +1,118 @@
+<aura:component controller="AccHierarchyApex" implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId" >
+	 
+   <aura:attribute name="recordId" type="String" />
+	<aura:attribute name="gridColumns" type="list" />
+    <aura:attribute name="gridData" type="Object" />
+    <aura:attribute name="gridExpandedRows" type="List" access="PRIVATE" />
+    <aura:attribute name="PageHeading" type="String" default="Account Hierarchy"/>
+    <aura:attribute name="iconName" type="String" />
+    <aura:attribute name = "accountList" type ="account[]"/>
+     <aura:attribute name = "account" type ="Account" default="{'sobjectType':'Account'}"/>
+     <aura:attribute name="SalesPlanner" type="Sales_Planner__c" default="{'sobjectType':'Sales_Planner__c'}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+   
+         <aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">
+             <article class="slds-card slds-card_boundary" >
+        <div class="slds-card__header slds-grid ">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    
+                        <lightning:icon iconName="standard:hierarchy" size="small" />
+                   
+                    <!--<aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}">
+                        <lightning:icon iconName="standard:hierarchy" size="medium" />
+                    </aura:if>-->
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                       
+                        <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span>{!v.PageHeading}</span> (<span>{!v.accountList==null?'0':v.accountList.length}</span>) 
+                        </p>
+                            
+                        <!--<aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}">
+                            <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span><b>{!v.PageHeading}</b></span>(<span>{!v.accountList==null?'0':v.accountList.length}</span>)
+                        </p> 
+                        </aura:if>-->
+                    </h2>
+                     </div>
+                     </header>
+             </div>
+                  <div>
+    <lightning:treeGrid columns="{! v.gridColumns }"
+        data="{! v.gridData }"
+        keyField="name"
+        expandedRows="{! v.gridExpandedRows}"
+        aura:id="mytree" 
+        hideCheckboxColumn = "true"
+                        style="height: 1000px;"
+       
+           />
+     
+                   </div>
+                 
+                   </article>
+        </aura:if>
+        
+        <aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}">
+             
+
+         <div class="slds-card__header slds-grid" style="padding-left:0px;">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <!--<aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">
+                        <lightning:icon iconName="standard:hierarchy" size="small" />
+                    </aura:if>-->
+                    
+                        <lightning:icon iconName="standard:hierarchy" size="medium" />
+                   
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <!--<aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">
+                        <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span>{!v.PageHeading}</span>(<span>{!v.accountList==null?'0':v.accountList.length}</span>) 
+                        </p>
+                            </aura:if>-->
+                        <aura:if isTrue="{!$Browser.formFactor!='TABLET'}">
+                            <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span style="color:black;">{!v.PageHeading}</span> (<span style="color:black;">{!v.accountList==null?'0':v.accountList.length}</span>)
+                        </p> 
+                        </aura:if>
+                        <aura:if isTrue="{!$Browser.formFactor=='TABLET'}">
+                            <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span style="color:black;"><b>{!v.PageHeading}</b></span>  <b style="color:black;"> (<span style="color:black;">{!v.accountList==null?'0':v.accountList.length}</span>)</b>
+                        </p> 
+                        </aura:if>
+                        <!--<aura:if isTrue="{!v.SalesPlanner}">
+                            <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                                <span style="color:black;"><b>{!v.PageHeading}</b></span> (<span style="color:black;">{!v.accountList==null?'0':v.accountList.length}</span>)
+                        </p> 
+                        </aura:if>-->
+                    </h2>
+                     </div>
+                     </header>
+             </div>
+                   <div>
+    <lightning:treeGrid columns="{! v.gridColumns }"
+        data="{! v.gridData }"
+        keyField="name"
+        expandedRows="{! v.gridExpandedRows}"
+        aura:id="mytree" 
+        hideCheckboxColumn = "true" 
+                        
+        class = "cAccountHierarchyCmp wrapText" />
+     
+                   </div>
+                  
+          
+
+        </aura:if>
+       
+    
+       
+
+</aura:component>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Personal_Note__c</fullName>
+    <description>It is your own personal note. Please don&#39;t enter any &quot;Log a Call&quot; information here.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>It is your own personal note. Please don&#39;t enter any &quot;Log a Call&quot; information here.</inlineHelpText>
+    <label>Personal Note</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <type>TextArea</type>
+</CustomField>

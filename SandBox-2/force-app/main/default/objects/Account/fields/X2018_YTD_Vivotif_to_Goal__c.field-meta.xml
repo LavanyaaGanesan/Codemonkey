@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2018_YTD_Vivotif_to_Goal__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( X2018_YTD_Vivotif_Goal__c&gt;0, X2018_YTD_Vivotif_doses__c / X2018_YTD_Vivotif_Goal__c,NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>2018 YTD Vivotif% to Goal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <type>Percent</type>
+</CustomField>

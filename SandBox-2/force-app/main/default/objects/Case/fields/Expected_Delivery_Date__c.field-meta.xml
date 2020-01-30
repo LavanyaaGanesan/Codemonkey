@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expected_Delivery_Date__c</fullName>
+    <description>This field is a required field if &quot;Priority&quot; field is &quot;Expedited&quot;.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is required if the &#39;Priority&#39; field is &#39;Expedited&#39;. For next day priority shipments, cases should be created latest by 3 pm EST.</inlineHelpText>
+    <label>Expected Delivery Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>You_dont_have_access_to_select_this_user</fullName>
+    <active>false</active>
+    <description>You_dont_have_access_to_select_this_user</description>
+    <errorConditionFormula>AND($User.ProfileId=&#39;00e61000000cYcv&#39;  ,Owner:User.ProfileId=&#39;00e610000015fhh&#39;)</errorConditionFormula>
+    <errorDisplayField>OwnerId</errorDisplayField>
+    <errorMessage>You dont have access to select this user</errorMessage>
+</ValidationRule>

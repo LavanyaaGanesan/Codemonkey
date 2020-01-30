@@ -1,0 +1,20 @@
+<apex:page >
+    
+    <apex:includeLightning />
+    <div id="mapAnythingTask" />
+    <script>
+    console.log("{!$CurrentPage.parameters.RecordId}");
+    console.log("{!$CurrentPage.parameters.Type}");
+    $Lightning.use("c:MapAnythingTaskApp", function() {
+        $Lightning.createComponent("c:MapAnythingTask",
+                                   {"recordId" : "{!$CurrentPage.parameters.RecordId}",
+                                   "recordType" :"{!$CurrentPage.parameters.Type}"},
+                                   "mapAnythingTask",
+                                   function(cmp) { 
+                                       // do some stuff
+                                   }
+                                  );
+    });
+    </script>
+    
+</apex:page>

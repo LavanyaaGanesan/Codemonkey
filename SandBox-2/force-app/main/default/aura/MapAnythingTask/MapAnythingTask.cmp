@@ -1,0 +1,308 @@
+<aura:component controller="customTaskController" implements="flexipage:availableForAllPageTypes">
+    <ltng:require scripts="{!join(',', $Resource.fullCalendar + '/node_modules/jquery/dist/jquery.min.js')}"/> 
+    
+    <!-- ATTRIBUTES -->
+    <aura:attribute name="recordId" type="String" default="a194N000007QaUOQA0" /> 
+    <aura:attribute name="recordType" type="String" default="LogACall" />
+   
+    <aura:attribute name="taskId" type="String" default=""/> 
+    <aura:attribute name="isOpen" type="boolean" default="false"/>    
+    <aura:attribute name="headerMessage" type="String" default="" />
+    <aura:attribute name="bodyMessage" type="String" default="" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="isPTO" type="boolean" default="false"/>
+    <aura:attribute name="gAccountName" type="boolean" default="false"/> 
+    <aura:attribute name="accountName" type="String" default=""/> 
+    <aura:attribute name="taskType" type="String" default="In Person"/> 
+    
+    <aura:attribute name="customDataCreate" type="object"/>    
+    <aura:attribute name="showCallStage" type="boolean" default="false"/>
+    <aura:attribute name="requiredCallStage" type="boolean" default="false"/>
+    <aura:attribute name="requiredVaxchoraCallStage" type="boolean" default="false"/>    
+    <aura:attribute name="requiredComments" type="boolean" default="false"/>
+    <aura:attribute name="activeDelete" type="boolean" default="false"/>    
+    <aura:attribute name="requiredAccount" type="boolean" default="true"/>
+    <aura:attribute name="requiredContact" type="boolean" default="false"/>    
+    <aura:attribute name="objectAssignTo" type="String" default="User"/>
+    <aura:attribute name="objectAccount"  type="String" default="Sales_Planner__c"/>
+    <aura:attribute name="objectContact"  type="String" default="Contact"/>
+    <aura:attribute name="selectedCalendarUserRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedCalendarUserParentRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedRelatedToAccountRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedRelatedToAccountParentRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedRelatedToContactRecords" type="sObject[]" default="[]"/>
+    <aura:attribute name="activeOthers" type="boolean" default="false"/>
+    <aura:attribute name="toggleProductDiscussed" type="boolean" default="true"/>
+    
+    <aura:attribute name="TaskForm" type="Task" default="{'sobjectType':'Task'}"/>
+    <aura:attribute name="hideEndDate" type="Boolean" default="false"/>
+    
+    <!--Register the component level event-->
+    <aura:registerEvent name="oSelectedRecordEvent" type="c:selectedsObjectRecordEvent"/>
+    <aura:registerEvent name="ApplicationEvent" type="c:customCalendarAppEvent"/>
+    
+    <!-- HANDLER    -->  
+    <aura:handler name="change" value="{!v.selectedRelatedToAccountRecord}" action="{!c.selectedRelatedToAccountRecordChange}" /> 
+    <aura:handler name="change" value="{!v.selectedRelatedToContactRecords}" action="{!c.validateContactMultiSelect}" /> 
+    <aura:handler name="change" value="{!v.customDataCreate}" action="{!c.customDataChange}"/>
+    
+
+    
+    <aura:attribute name="isVaxchora" type="boolean" default="false"/>
+    <aura:attribute name="isVivotif" type="boolean" default="false"/>
+    <aura:attribute name="requiredProductDiscussed" type="boolean" default="false"/> 
+    <aura:attribute name="requiredResourcesLeft" type="boolean" default="false"/> 
+    <aura:attribute name="requiredResourcesLeftOnType" type="boolean" default="false"/>    
+    
+    <aura:attribute name="multipleContacts" type="Boolean" default="false"/>
+    <aura:attribute name="loaded" type="boolean" default="false"/>
+    <aura:attribute name="sucessForMobile" type="boolean" default="false"/>
+    <aura:attribute name="sucessMessageForMobile" type="String" default="Log A Call /  NawTask saved successfully, Please click Back button in your device!"/>
+    
+    <aura:attribute name="Cancel" type="boolean" default="false"/>
+    <aura:attribute name="CancelMessage" type="String" default="Please click Back button in your device!"/>
+    
+        
+    
+    <aura:if isTrue="{! !v.loaded }">
+        <!--div class="backgroundInverse">
+            <lightning:spinner alternativeText="Loading" variant="inverse" />
+        </div-->
+    </aura:if>
+    <aura:if isTrue="{!v.Cancel }">
+    	<strong style="color:green;font-size:120%">{!v.CancelMessage}</strong>
+    </aura:if>
+     <aura:if isTrue="{! !v.Cancel }">
+    <aura:if isTrue="{!v.sucessForMobile }">
+    	<strong style="color:green;font-size:120%">{!v.sucessMessageForMobile}</strong>
+         </aura:if></aura:if>
+    <aura:if isTrue="{! !v.sucessForMobile }">
+    <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h2 class="slds-section-title--divider">
+                <aura:if isTrue="{!v.recordType=='LogACall'}">Log A Call</aura:if>
+                <aura:if isTrue="{!v.recordType=='NewTask'}">New Task</aura:if>
+            </h2>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:input aura:id="validateTaskField" type="text" name="subject"
+                                     label="Subject" disabled="true" value="{!v.TaskForm.Subject}"/>
+                </lightning:layoutItem>       
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <c:customLookup fieldName="customUserID" objectAPIName="{!v.objectAssignTo}" IconName="standard:user" 
+                                    getAll="false" selectedRecord="{!v.selectedCalendarUserRecord}" selectedParentRecord="{!v.selectedCalendarUserParentRecord}" label="Assign To" requiredInput="true"/>
+                    <div class="AssignTo errorText">Complete this field.</div>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6" padding="around-small">
+                    <!--<lightning:input aura:id="validateTaskField" type="date" name="dueDate" label="Due Date" required="true" value="{!v.TaskForm.ActivityDate}" /> -->
+                    <lightning:input aura:id="validateTaskField" type="datetime-local" name="activityDate"  
+                                     label="Start" required="true" value="{!v.TaskForm.ActivityDateTime__c}" />
+                    <div class="StartDateTimeBetween errorText">Please select start time between 8:00 am-6:00 pm.</div>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6" padding="around-small">
+                    <aura:if isTrue="{!v.recordType!='LogACall'}">
+                        <lightning:input aura:id="validateTaskField" type="datetime-local" name="activityEndDate" 
+                                         label="End" required="true" value="{!v.TaskForm.EndDate__c}" />
+                        <div class="EndDate errorText">Must be greater than Start Date.</div>
+                        <div class="EndDateTimeBetween errorText">Please select end time between 8:00 am-6:00 pm.</div>
+                    </aura:if>
+                    
+                </lightning:layoutItem> 
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:select aura:id="validateTaskField" required="true" name="taskPriority" label="Priority" value="{!v.TaskForm.Priority}">
+                        <option value="">--None--</option>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                    </lightning:select>
+                </lightning:layoutItem>             
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:select aura:id="validateTaskField" required="true" name="taskType" label="Type" value="{!v.TaskForm.Type}" onchange="{!c.onChangeType}">
+                        <option value="">--None--</option>
+                        <option value="In Person">In Person</option>
+                        <option value="Email">Email</option>
+                        <option value="Phone Call">Phone Call</option>
+                        <option value="Voicemail">Voicemail</option>
+                        <option value="PTO">PTO</option>
+                    </lightning:select>
+                </lightning:layoutItem>           
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:select aura:id="validateTaskField" required="true" name="status" label="Status" value="{!v.TaskForm.Status}" onchange="{!c.onChangeStatus}">
+                        <option value="">--None--</option>
+                        <option value="Open">Open</option>
+                        <option value="Completed">Completed</option>
+                    </lightning:select>
+                </lightning:layoutItem>           
+                <!--<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                    <lightning:input type="checkbox" label="Business Related" name="Business_Related__c" 
+                                     value="{!v.TaskForm.Business_Related__c}" onchange="{!c.onBusinessRelatedClick}"/>
+                </lightning:layoutItem> -->  
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <aura:if isTrue="{!v.toggleProductDiscussed}">
+                        <lightning:select aura:id="validateTaskField" class="productDiscussed" name="productDiscussed" label="Topic of Discussion" 
+                                          required="{!v.requiredProductDiscussed}" value="{!v.TaskForm.Product_Discussed__c}" 
+                                          onchange="{!c.onChangeProductDiscussed}">
+                            <option value="">--None--</option>
+                            <aura:if isTrue="{!v.activeOthers}">
+                                <option value="Vivotif">Vivotif</option>
+                                <option value="Vaxchora">Vaxchora</option>
+                                <option value="Vivotif and Vaxchora">Vivotif and Vaxchora</option>
+                            </aura:if>
+                            <option value="Business Related">Business Related</option>
+                        </lightning:select>
+                    </aura:if>
+                </lightning:layoutItem>
+                <aura:if isTrue="{!v.activeOthers}">               
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                        <label class="slds-form-element__label">
+                            <abbr class="slds-required" title="required"> <aura:if isTrue="{!v.requiredResourcesLeftOnType}">*</aura:if> </abbr>
+                            Resources Left
+                        </label><br/>
+                        <select id="resourcesSelect" style="width:100%" multiple="multiple" 
+                                onchange="{!c.onChangeResources}"
+                                disabled="{! !v.requiredResourcesLeft}">
+                                <option value="None">None</option>                            
+                            <aura:if isTrue="{!v.isVaxchora || v.isVivotif}"> <!-- Here to add options for Vaxchora and Vivotif -->
+                                <option value="Traveler’s Companion">Traveler’s Companion</option>
+                                <option value="IDSA Guide">IDSA Guide</option>
+                                <option value="Map (In-office poster)">Map (In-office poster)</option>
+                                <option value="Unbranded Brochure">Unbranded Brochure</option>
+                                <option value="Discount Program – New Customers">Discount Program – New Customers</option>
+                                <option value="Discount Program – Existing Customers">Discount Program – Existing Customers</option>
+                                <option value="Discount Program – Pay in Full">Discount Program – Pay in Full</option>
+                                <option value="In-office Savings Cards (5x7)">In-office Savings Cards (5x7)</option> 
+                            </aura:if>
+                            <!--option value="Vaxchora PI">Vaxchora PI</option-->
+                            <aura:if isTrue="{!v.isVaxchora}"> <!-- Here to add options for Vaxchora  -->
+                                <option value="Vaxchora Flashcard">Vaxchora Flashcard</option>
+                                <option value="MMWR Booklets">MMWR Booklets</option>
+                                <option value="Ali Booklets (Feb 2017)">Ali Booklets (Feb 2017)</option>
+                                <option value="Vaxchora HCP Leave Behind">Vaxchora HCP Leave Behind</option>
+                                <option value="Vaxchora Getting Ready Tip Sheet">Vaxchora Getting Ready Tip Sheet</option>
+                                <option value="Vaxchora Reconstitution Clingz">Vaxchora Reconstitution Clingz</option>
+                                <option value="Vaxchora Scheduler Clingz">Vaxchora Scheduler Clingz</option>
+                                <option value="Vaxchora Product Monograph">Vaxchora Product Monograph</option>
+                                <option value="(Chen) White Envelope">(Chen) White Envelope</option>
+                                <option value="(Herzog) White Envelope">(Herzog) White Envelope</option>
+                                <option value="Vaxchora Patient Brochure w. QR Code">Vaxchora Patient Brochure w. QR Code</option>
+                                <option value="Vaxchora Patient Brochure">Vaxchora Patient Brochure</option>
+                                <option value="Vaxchora Patient Profiler">Vaxchora Patient Profiler</option>
+                                <option value="Vaxchora HCP Flashcard – 98 %">Vaxchora HCP Flashcard – 98 %</option>
+                                <option value="Vaxchora HCP Flashcard – 8 million">Vaxchora HCP Flashcard – 8 million</option>
+                            </aura:if>
+                            <!--option value="Vivotif PI">Vivotif PI</option-->
+                            <aura:if isTrue="{!v.isVivotif}"> <!-- Here to add options for Vivotif  -->
+                                <option value="Vivotif Patient Brochure">Vivotif Patient Brochure</option>
+                                <option value="Vivotif Pouchettes w/ PI">Vivotif Pouchettes w/ PI</option>
+                                <option value="Vivotif Dosing Admin Clingz">Vivotif Dosing Admin Clingz</option>
+                                <option value="Vivotif Leave Behind">Vivotif Leave Behind</option>
+                                <option value="Vivotif Orange Refrigeration Stickers">Vivotif Orange Refrigeration Stickers</option>
+                                <option value="Vivotif Product Monograph">Vivotif Product Monograph</option> 
+                            </aura:if>
+                        </select>
+                        <div class="ResourcesLeft errorText">Please select the picklist value.</div>
+                    </lightning:layoutItem>
+                    <aura:if isTrue="{!v.showCallStage}">
+                        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                            <lightning:select aura:id="validateTaskField" name="callStage" label="Vivotif Call Stage" 
+                                              required="{!v.requiredCallStage}" 
+                                              disabled="{! !v.requiredCallStage}"
+                                              value="{!v.TaskForm.Call_Stage__c}">
+                                <option value="">--None--</option>
+                                <aura:if isTrue="{!v.requiredCallStage}">
+                                    <option value="Disease/Product Introduction">Disease/Product Introduction</option>
+                                    <option value="Meaningful Dialogue">Meaningful Dialogue</option>
+                                    <option value="Objection Handling">Objection Handling</option>
+                                    <option value="Commitment Gained">Commitment Gained</option>
+                                </aura:if>
+                            </lightning:select>
+                        </lightning:layoutItem> 
+                        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                            <lightning:select aura:id="validateTaskField" name="vaxchoraCallStage" label="Vaxchora Call Stage" 
+                                              required="{!v.requiredVaxchoraCallStage}" 
+                                              disabled="{! !v.requiredVaxchoraCallStage}"
+                                              value="{!v.TaskForm.Vaxchora_Call_Stage__c}">
+                                <option value="">--None--</option>                                
+                                <aura:if isTrue="{!v.requiredVaxchoraCallStage}">
+                                    <option value="Disease/Product Introduction">Disease/Product Introduction</option>
+                                    <option value="Meaningful Dialogue">Meaningful Dialogue</option>
+                                    <option value="Objection Handling">Objection Handling</option>
+                                    <option value="Commitment Gained">Commitment Gained</option>
+                                </aura:if>
+                            </lightning:select>
+                        </lightning:layoutItem> 
+                    </aura:if>
+                </aura:if>
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Related To</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    
+                    <c:customLookup aura:id="customAccountID"  objectAPIName="{!v.objectAccount}" IconName="standard:account" 
+                                    requiredInput="{!v.requiredAccount}" selectedRecord="{!v.selectedRelatedToAccountRecord}" selectedParentRecord="{!v.selectedRelatedToAccountParentRecord}"  label="Sales Planner"/>
+                    <div class="RelatedTo errorText">Complete this field.</div>
+                </lightning:layoutItem>       
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <c:reUsableMultiSelectLookupCmp objectAPIName="{!v.objectContact}" 
+                                                    requiredInput="{!v.requiredContact}"
+                                                    IconName="standard:contact"
+                                                    customDataMulti="{!v.customDataCreate}"
+                                                    lstSelectedRecords="{!v.selectedRelatedToContactRecords}"
+                                                    label="Contact Name"/>
+                    <div class="ContactName errorText">Complete this field.</div>
+                </lightning:layoutItem>                 
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Description Information</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                    <lightning:textarea aura:id="validateTaskField" name="comments" label="Comments" required="{!v.requiredComments}" value="{!v.TaskForm.Description}" />
+                </lightning:layoutItem>
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <footer class="slds-task__footer">
+                <lightning:button variant="neutral" 
+                                  label="Cancel"
+                                  title="Cancel"
+                                  onclick="{! c.closeModelCancel }"/>
+                <lightning:button variant="brand" 
+                                  label="Save"
+                                  title="Save"
+                                  onclick="{! c.saveClick }"/>
+            </footer>
+        </lightning:layoutItem>
+    </lightning:layout> 
+    </aura:if>
+    
+    <aura:if isTrue="{!v.isOpen}">            
+        <div class="slds-m-around_xx-large">
+            <!--Use aura:if tag to display Model Box, on the bese of conditions. [isOpen boolean attribute] -->   
+            <!--###### MODAL BOX Start######--> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- ###### MODAL BOX HEADER Start ######-->
+                    <header class="slds-modal__header">
+                        <lightning:buttonIcon iconName="utility:close"
+                                              onclick="{! c.closeModel }"
+                                              alternativeText="close"
+                                              variant="bare-inverse"
+                                              class="slds-modal__close"/>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!v.headerMessage}</h2>
+                    </header>
+                    <!--###### MODAL BOX BODY Part Start######-->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        {!v.bodyMessage}
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+            <!--###### MODAL BOX Part END Here ######-->
+        </div>
+    </aura:if>
+    
+</aura:component>

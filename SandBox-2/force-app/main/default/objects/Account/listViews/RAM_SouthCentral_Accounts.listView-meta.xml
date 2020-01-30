@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RAM_SouthCentral_Accounts</fullName>
+    <columns>DDD_Outlet_ID__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Region__c</columns>
+    <columns>Class_of_Trade__c</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>X2018_YTD_Typhoid_Doses__c</columns>
+    <columns>X2018_YTD_Vivotif_doses__c</columns>
+    <columns>X2018_YTD_Vaxchora_doses__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>DDD_Outlet_ID__c</field>
+        <operation>greaterThan</operation>
+        <value>00000000</value>
+    </filters>
+    <filters>
+        <field>CORE.USERS.LAST_NAME</field>
+        <operation>equals</operation>
+        <value>Boutwell</value>
+    </filters>
+    <label>RAM_SouthCentral_Accounts</label>
+</ListView>

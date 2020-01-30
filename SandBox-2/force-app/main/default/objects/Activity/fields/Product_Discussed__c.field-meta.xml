@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Discussed__c</fullName>
+    <externalId>false</externalId>
+    <label>Topic of Discussion</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Status</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Vivotif</fullName>
+                <default>false</default>
+                <label>Vivotif</label>
+            </value>
+            <value>
+                <fullName>Vaxchora</fullName>
+                <default>false</default>
+                <label>Vaxchora</label>
+            </value>
+            <value>
+                <fullName>Vivotif and Vaxchora</fullName>
+                <default>false</default>
+                <label>Vivotif and Vaxchora</label>
+            </value>
+            <value>
+                <fullName>Business Related</fullName>
+                <default>false</default>
+                <label>Business Related</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Completed</controllingFieldValue>
+            <valueName>Vivotif</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Completed</controllingFieldValue>
+            <valueName>Vaxchora</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Completed</controllingFieldValue>
+            <valueName>Vivotif and Vaxchora</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Completed</controllingFieldValue>
+            <controllingFieldValue>Open</controllingFieldValue>
+            <valueName>Business Related</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,76 @@
+<aura:component controller="ContactsDisplays" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!--<div class="slds-transition-hide">
+    {!$Browser.isTablet}
+    {!$Browser.isPhone}
+    {!$Browser.isAndroid}
+         {!$Browser.formFactor}</div>-->
+    
+    <aura:attribute name = "contactsList" type ="contact[]"/>
+    <aura:attribute name="contacts" type="Contact" default="{'sobjectType':'Contact'}"/>
+    <aura:attribute name="SalesPlanner" type="Sales_Planner__c" default="{'sobjectType':'Sales_Planner__c'}"/>
+    <aura:attribute name="PageHeading" type="String" default="Contacts"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="AccountId" type="String" />
+    <aura:attribute name="contactID" type="String" />
+    <aura:attribute name="Id" type="String" />
+    <aura:attribute name="relativeUrl" type="String" />
+    <aura:attribute name="class" type="String" />
+    <aura:attribute name="sObjectName" type="String" default="Contact" />
+    <aura:attribute name="iconName" type="String" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    
+    <article class="slds-card slds-card_boundary">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="{!v.iconName}" size="small" /> 
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <a class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span>{!v.PageHeading}</span> (<span>{!v.contactsList==null?'0':v.contactsList.length}</span>)
+                        </a>
+                    </h2>
+                </div>
+                <div class="slds-is-relative floatRight">
+                    <ui:button label="New" press="{!c.createRecord}"/>
+                </div>
+                
+            </header>
+        </div>
+        <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+            <thead>
+                <tr class="slds-text-heading--label">
+                    <th scope="col"><div class="cContactsRelated wrapText" title="Name">Name</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="Title">Title</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="Phone">Phone</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="email">Email</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="ContactRelationship">Contact Relationship</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="Role">Role</div></th>
+                    <th scope="col"><div class="cContactsRelated wrapText" title="Status">Status</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var ="con" items ="{!v.contactsList}">
+                    <tr>
+                        <th scope="row"><div class="cContactsRelated wrapText" title="{!con.Name }">
+                            <a class="{!v.class}" href="{!'/' + con.Id}">&nbsp;{!con.Name }</a></div></th>
+                        <td><div class="cContactsRelated wrapText" title="{!con.Title}">&nbsp;{!con.Title}</div></td>
+                        <td><div class="cContactsRelated wrapText" title="{!con.Phone}">&nbsp;{!con.Phone}</div></td>
+                        <td><div class="cContactsRelated wrapText" title="{!con.email}">&nbsp;{!con.Email}</div></td>
+                        <td><div class="cContactsRelated wrapText" title="{!con.ContactRelationship}">&nbsp;{!con.Contact_Relationship__c}</div></td>
+                        <td><div class="cContactsRelated wrapText" title="{!con.Role}">&nbsp;{!con.Role__c}</div></td>
+                        <td><div class="cContactsRelated wrapText" title="{!con.Status}">&nbsp;{!con.Status__c}</div></td>
+                   </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+        <footer class="slds-card__footer">
+        </footer>
+    </article>
+    
+    
+</aura:component>

@@ -1,0 +1,15 @@
+<apex:page standardController="Account">
+    <apex:includeLightning />
+    <div id="spHistoryList" />
+    <script>
+    $Lightning.use("c:SalesPlannerHistoryTrackingApp", function() {
+        $Lightning.createComponent("c:SalesplannerHistoryTracking",
+                                   { "recordId" : "{!Account.id}"},
+                                   "spHistoryList",
+                                   function(cmp) { 
+                                       // do some stuff
+                                   }
+                                  );
+    });
+    </script>
+</apex:page>

@@ -1,0 +1,82 @@
+.THIS .wrapText{
+    white-space: pre-wrap; /* css-3 */
+    white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* Internet Explorer 5.5+ */
+    word-break: break-word;
+    white-space: pre-wrap;
+    clear:both;
+}
+.THIS .lightning-primitive-icon {
+    margin-left: 10px;
+}
+
+.THIS .floatRight{
+    float:right;
+}
+
+
+.THIS .borderZero{
+    border-bottom:0px solid rgb(243, 242, 242) !important;
+}
+
+.THIS .stickyButton{
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    z-index: 10;
+    height: 55px!important;
+    background: white;
+    top: 0;
+    padding: 10px;
+    border-top: 2px solid rgb(243, 242, 242);
+    border-bottom: 2px solid rgb(243, 242, 242);
+    margin-top:5px;
+}
+.THIS .stickyButtonFixed{
+    position:fixed;
+     margin-top:0px;
+}
+@media (min-width: 768px) {
+    .THIS .tableHead{
+        font-weight:bold;
+        
+    }
+    .THIS .fieldName{
+        display:none;
+    }
+}
+
+@media (max-width: 767px) { 
+  .THIS .tableHead{
+        display:none;        
+    }
+    .THIS .tableHead th{
+        font-weight:bold;        
+    }
+    .THIS .tableBody{
+        border-bottom:1px solid rgb(243, 242, 242);
+		text-align:center;        
+    }
+    .THIS .fieldName{
+        min-width: 33% !important;
+    	float:left;
+        font-weight:bold;
+    } 
+    .THIS .fieldValue {
+        width: 65% !important;
+        display: table-cell;
+        padding:0px 5px;
+    }   
+    .THIS .tableBody td{
+        display:block;
+    }
+        
+    .THIS .tableBody td.paddingTop{
+        padding-top:10px;
+    }
+    .THIS .tableBody td.paddingBottom{
+        padding-bottom:10px;border-bottom: 2px solid rgb(243, 242, 242); ;
+    }
+}

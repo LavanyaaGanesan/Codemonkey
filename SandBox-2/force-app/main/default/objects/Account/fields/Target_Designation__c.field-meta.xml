@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Designation__c</fullName>
+    <externalId>false</externalId>
+    <label>Target Designation</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>FSS</fullName>
+                <default>false</default>
+                <label>FSS</label>
+            </value>
+            <value>
+                <fullName>ISR</fullName>
+                <default>false</default>
+                <label>ISR</label>
+            </value>
+            <value>
+                <fullName>Kaiser</fullName>
+                <default>false</default>
+                <label>Kaiser</label>
+            </value>
+            <value>
+                <fullName>RAM</fullName>
+                <default>false</default>
+                <label>RAM</label>
+            </value>
+            <value>
+                <fullName>Unassigned</fullName>
+                <default>false</default>
+                <label>Unassigned</label>
+            </value>
+            <value>
+                <fullName>Zip PHY</fullName>
+                <default>false</default>
+                <label>Zip PHY</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

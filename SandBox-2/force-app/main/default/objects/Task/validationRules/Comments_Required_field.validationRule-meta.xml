@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Comments_Required_field</fullName>
+    <active>true</active>
+    <description>Comments is a required field when the status is &quot;completed&quot;</description>
+    <errorConditionFormula>And(Or(ISPICKVAL(Status,&quot;Completed&quot;), ISPICKVAL(Product_Discussed__c,&quot;Business Related&quot;)) ,ISBLANK((Description)))</errorConditionFormula>
+    <errorMessage>Please enter the comments.</errorMessage>
+</ValidationRule>

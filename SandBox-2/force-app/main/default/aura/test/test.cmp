@@ -1,0 +1,21 @@
+<aura:component >
+    <div>
+        <div style="position:absolute;">
+            <div class="hoverData">
+                Open Div
+                <div class="dropSection" >
+                    Favorite this page<br/>
+                    Favorite this page<br/>
+                    Favorite this page<br/>
+                    Edit Favorites
+                </div>
+            </div> 
+        </div>
+        
+        Test 1234 <br/>
+        Test 1234 <br/>
+        Test 1234 <br/>
+        Test 1234 <br/>
+        Test 1234 <br/>
+    </div>
+</aura:component>

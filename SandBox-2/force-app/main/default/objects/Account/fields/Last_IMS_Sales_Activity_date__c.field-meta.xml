@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_IMS_Sales_Activity_date__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This field shows the last recorded activity of IMS sales data.</inlineHelpText>
+    <label>Last IMS Sales Activity Date</label>
+    <summarizedField>Sales_Data__c.Date__c</summarizedField>
+    <summaryForeignKey>Sales_Data__c.Account__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <type>Summary</type>
+</CustomField>

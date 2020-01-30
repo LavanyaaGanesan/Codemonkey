@@ -1,0 +1,33 @@
+<!-- ***************************************************************
+* Owner/Modify by Name : Archie Bisen
+* @description: Visulforce page to display lightning component.
+* @Change:  
+* @last modify by:  Vishal soni
+* @last modify date:  8-Jan-2020
+* *************************************************************** -->
+<apex:page standardController="Account" standardStylesheets="false">
+   
+    
+    	<apex:includeLightning />
+    	<div id="Data" style="height:1000px;"/>
+    	
+            
+    <script>
+ 
+
+    $Lightning.use("c:DailySalesShiptoApp", function() {
+        //Calling component and provide the record ID.
+        $Lightning.createComponent("c:DailySalesShipto",
+                                   {"RecordId" : "{!Account.id}"},
+                                  
+                                   "Data",
+                                   function(component) { 
+                                       //Setting the record ID as account ID.
+                  
+                                       component.set("v.RecordId", "{!Account.id}");
+                                       
+                                   }
+                                  );
+    });
+    </script>
+</apex:page>

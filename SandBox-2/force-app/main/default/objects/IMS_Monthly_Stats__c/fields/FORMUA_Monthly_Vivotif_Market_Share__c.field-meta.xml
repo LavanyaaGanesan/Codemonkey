@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FORMUA_Monthly_Vivotif_Market_Share__c</fullName>
+    <externalId>false</externalId>
+    <formula>/*IF(FORM_Monthly_Total_Typhoid_Fever_Vaccine__c  &lt;&gt; 0, (RS_Monthly_Vivotif_Total_Rollup__c /  FORM_Monthly_Total_Typhoid_Fever_Vaccine__c), 0)*/
+IF(FORM_Monthly_Total_Typhoid_Fever_Vaccine__c  &lt;&gt; 0, (Monthly_Vivotif_Total_Rollup__c /  FORM_Monthly_Total_Typhoid_Fever_Vaccine__c), 0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Monthly Vivotif Market Share %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

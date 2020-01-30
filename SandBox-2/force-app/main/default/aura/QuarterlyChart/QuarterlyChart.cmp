@@ -1,0 +1,14 @@
+<aura:component controller="QuarterlyChartsDisplay" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <ltng:require scripts="{!$Resource.Highcharts}" afterScriptsLoaded="{!c.afterScriptsLoaded}"/>
+    <aura:attribute name = "QuarterlyChartList" type ="Sales_Data__c"/>
+    <aura:attribute name = "ListQuarterlyChart" type ="Sales_Data__c"/>
+    <aura:attribute name = "PName" type ="String" default="VIVOTIF BERNA"/>
+    <aura:attribute name = "SYear" type ="String" default="LAST YEAR"/>
+    <aura:attribute name="recordId" type="String" default="a2im00000007hzhAAA"/>
+    <aura:attribute name = "proName" type ="String" default="VAXCHORA"/>
+    <aura:attribute name = "fYear" type ="String" default="LAST YEAR"/>
+    <aura:attribute name = "color" type ="String" default="purple"/>
+    <aura:attribute name = "Name1" type ="String" />
+    
+    <div aura:id="chart" class="slds-box slds-box--small"></div>
+</aura:component>

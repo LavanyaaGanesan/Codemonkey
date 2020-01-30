@@ -1,0 +1,9 @@
+<aura:component controller="NewTaskMapApex" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global"  >
+	  
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="AccountId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+   
+      
+</aura:component>

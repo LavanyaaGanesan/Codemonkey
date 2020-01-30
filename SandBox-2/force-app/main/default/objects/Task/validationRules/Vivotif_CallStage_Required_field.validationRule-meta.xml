@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vivotif_CallStage_Required_field</fullName>
+    <active>true</active>
+    <description>The Vivotif call stage becomes a required field when Vivotif is selected from the picklist.</description>
+    <errorConditionFormula>And( 
+ISPICKVAL(Status, &quot;Completed&quot;), 
+ISPICKVAL(Product_Discussed__c ,&quot;Vivotif&quot;), 
+ISBLANK(TEXT( Call_Stage__c)))</errorConditionFormula>
+    <errorDisplayField>Call_Stage__c</errorDisplayField>
+    <errorMessage>Select a picklist value from the &quot;Vivotif Call Stage&quot; field to save the record.</errorMessage>
+</ValidationRule>

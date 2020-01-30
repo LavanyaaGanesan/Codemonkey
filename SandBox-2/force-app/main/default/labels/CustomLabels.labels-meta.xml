@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CY_PY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>current year and previous year for charts</shortDescription>
+        <value>PY &amp; CY</value>
+    </labels>
+    <labels>
+        <fullName>CustomerMaster_InDirect_SOQL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerMaster InDirect SOQL</shortDescription>
+        <value>Select Account_SOQL__c,ShipTo_Information_SOQL__c,Content_Version_SOQL__c,CSV_Index__c, Testing_Email__c,To_Email__c,CC_Email__c,BCC_Email__c,Email_Header__c, Email_Body__c,Report_CSV_Header__c, DailySales_Data_SOQL__c, Report_Multiple_DDD_CSV_Header__c from CustomerMasterConfig__mdt where MasterLabel=&#39;IDSMainConfig&#39;</value>
+    </labels>
+    <labels>
+        <fullName>CustomerMaster_SOQL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerMaster Direct SOQL</shortDescription>
+        <value>Select Account_SOQL__c,ShipTo_Information_SOQL__c,Content_Version_SOQL__c,CSV_Index__c, Testing_Email__c,To_Email__c,CC_Email__c,BCC_Email__c,Email_Header__c, Email_Body__c,Report_CSV_Header__c, DailySales_Data_SOQL__c, Report_Multiple_DDD_CSV_Header__c from CustomerMasterConfig__mdt where MasterLabel=&#39;DSMainConfig&#39;</value>
+    </labels>
+    <labels>
+        <fullName>ISR_ProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ISR ProfileId</shortDescription>
+        <value>00e61000000Z6ykAA</value>
+    </labels>
+    <labels>
+        <fullName>Profileid_RAM_ISR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Profileid RAM&amp;ISR</shortDescription>
+        <value>00e61000000cYcvAAE,00e61000000Z6ykAAC</value>
+    </labels>
+    <labels>
+        <fullName>RAM_ProfileID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RAM ProfileID</shortDescription>
+        <value>00e61000000cYcvAAE</value>
+    </labels>
+    <labels>
+        <fullName>pvCaseLimitError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pvCaseLimitError</shortDescription>
+        <value>Please contact Gina Perrone at perroneg@ebsi.com for Vivotif pochette orders exceeding 125 bags.</value>
+    </labels>
+    <labels>
+        <fullName>pvEmailBatchConfQuery</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pvEmailBatchConfQuery</shortDescription>
+        <value>SELECT UserQuery__c, SalesPlannerQuery__c, TaskQuery__c, EventQuery__c, EmailFormatMetadataQuery__c,CsvHeader__c,TypePicklistValues__c,TestingEmail__c,SPTotalCount__c,BccEmailID__c,ManagersEmailIdInCC__c, ExcludeUserID__c, Label FROM pvEmailBatchConf__mdt</value>
+    </labels>
+    <labels>
+        <fullName>pvHolidaysQuery</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pvHolidaysQuery</shortDescription>
+        <value>select id, name, ActivityDate FROM Holiday WHERE ActivityDate = THIS_YEAR or  ActivityDate = NEXT_YEAR</value>
+    </labels>
+    <labels>
+        <fullName>pvQuerySPEmailFormats</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pvQuerySPEmailFormats</shortDescription>
+        <value>SELECT subject__c, body__c,Label FROM pvSalesPlannerEmailFormats__mdt</value>
+    </labels>
+    <labels>
+        <fullName>pvSystemProfileId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>pvSystemProfileId</shortDescription>
+        <value>00e610000015fhh</value>
+    </labels>
+</CustomLabels>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>updateContractAmount__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Populates Account.Contract Amount from Vivotif Contract object</description>
+    <externalId>false</externalId>
+    <label>updateContractAmount</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

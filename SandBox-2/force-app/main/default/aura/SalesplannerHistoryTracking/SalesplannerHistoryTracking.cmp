@@ -1,0 +1,294 @@
+<aura:component controller="SalesPlannerHistoryController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name = "spHistoryList" type ="Sales_Planner_History__c[]"/>
+    <aura:attribute name="Sales_Planner_History__c" type="Sales_Planner_History__c" default="{'sobjectType':'Sales_Planner_History__c'}"/>
+    <aura:attribute name="PageHeading" type="String" default="History Related List"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="class" type="String" />
+    <aura:attribute name="errorMessage" type="String" />
+    <aura:attribute name="errorMessageClass" type="String" default="green"  />
+    <aura:attribute name="borderWidth" type="String" default="1" />
+    <aura:attribute name="isAdmin" type="Boolean" default="false"  />
+    <aura:attribute name="showMessage" type="Boolean" default="false"  />
+    <aura:attribute name="sObjectName" type="String" default="Sales_Planner__c" />
+    <aura:attribute name="iconName" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  
+    <article class="slds-card slds-card_boundary"
+             style="{!'border:' + v.borderWidth + 'px solid rgb(221, 219, 218) !important;'}">
+        <div class="related_list_themed_border_top" data-aura-rendered-by="4956:0"></div>
+        <div class="slds-card__header slds-grid" >
+            <header class="slds-media slds-media_center slds-has-flexi-truncate fixedPosition">
+                <div class="slds-media__figure">
+                    <lightning:icon iconName="{!v.iconName}" size="medium" class="slds-float_left" /> 
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                         <aura:if isTrue="{!$Browser.formFactor!='TABLET'}">
+                        <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span style="color:black">{!v.PageHeading}</span> (<span style="color:black">{!v.spHistoryList==null?'0':v.spHistoryList.length}</span>)
+                        </p>
+                        </aura:if>
+                         <aura:if isTrue="{!$Browser.formFactor=='TABLET'}">
+                        <p class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                            <span style="color:black"><b>{!v.PageHeading}</b>  </span> <b style="color:black;">(<span style="color:black">{!v.spHistoryList==null?'0':v.spHistoryList.length}</span>)</b>
+                        </p>
+                        </aura:if>
+                        
+                    </h2>
+                </div>
+                <!--div class="slds-no-flex">
+                    <button class="slds-button slds-button_neutral">New</button>
+                </div-->
+            </header>
+        </div>
+     
+        
+     <div class="slds-card__body">
+         
+            <aura:if isTrue="{!v.showMessage}">
+            	<div id="messageLabel" class="{!v.errorMessageClass}">{!v.errorMessage}</div>
+            </aura:if>
+                <aura:iteration var ="spHistory" items ="{!v.spHistoryList}" indexVar="ind">
+                 	<aura:if isTrue="{! !$Browser.isTablet}">
+                        <aura:if isTrue="{!$Browser.isPhone}">
+                        	<br/><br/>
+                    	</aura:if>
+                   </aura:if>
+                    
+                     <lightning:accordion allowMultipleSectionsOpen="true" class="slds-section__title slds-theme_shade"
+        onsectiontoggle="{! c.handleSectionToggle }">
+                         
+                <lightning:accordionSection  name="{!spHistory.Name +'  '+spHistory.Sales_Planner_Year__c}"  label="{!spHistory.Name+'  '+spHistory.Sales_Planner_Year__c}" >
+       <lightning:layout multipleRows="true">
+                    <div class="slds-box slds-theme_default" var ="spHistory" items ="{!v.spHistoryList}" indexVar="ind">
+        
+              
+       <lightning:layout multipleRows="true">
+             <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+                        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title=" Salesplanner Name">
+                            <aura:if isTrue="{! v.isAdmin}">                            
+                            	<input type="radio" name="rbdSPH" id="{!'rbdSPH'+ind}" value="{!spHistory.Id+'~'+spHistory.Sales_Planner_Year__c}" />
+                            </aura:if>
+                            &nbsp;&nbsp;Salesplanner Name: <br></br>
+                            <aura:if isTrue="{! v.isAdmin}">
+                                <a class="{!v.class}" href="{!'/' + spHistory.Id}">{!spHistory.Name }</a>
+                            </aura:if>
+                            <aura:if isTrue="{! !v.isAdmin}">
+                        		{!spHistory.Name }
+                    		</aura:if>
+               				 
+                        </span>
+             </lightning:layoutItem>
+             
+              <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+             <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title=" Salesplanner Year">
+             Year: <br></br> {!spHistory.Sales_Planner_Year__c}
+             </span>
+             </lightning:layoutItem>
+                    </lightning:layout>
+        
+              <!-- <div class="slds-section slds-is-open">
+  <h3 class="slds-section__title">
+    <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+      
+      <span class="slds-truncate" title="Section Title"><b>Vaxchora Goal</b></span>
+    </button>
+  </h3>
+  <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">-->
+     <lightning:accordion allowMultipleSectionsOpen="true" class="slds-section__title slds-theme_shade"
+        onsectiontoggle="{! c.handleSectionToggle }">
+                <lightning:accordionSection  name="Vaxchora Goal" label="Vaxchora Goal" >
+       <lightning:layout multipleRows="true">
+                          
+        <!--<lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Name">
+           <b> Name &nbsp; &nbsp; </b> 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Name }">
+            <a class="{!v.class}" href="{!'/' + spHistory.Id}"> {!spHistory.Name }</a>
+            </span>
+        </lightning:layoutItem>-->
+                        
+        <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="1H RAM Vaxchora Projected Doses">
+            
+                1H RAM Vaxchora Projected Doses : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.H_RAM_Projected_Vaxchora_1__c }">
+             {!spHistory.H_RAM_Projected_Vaxchora_1__c}
+            </span>
+        </lightning:layoutItem>   
+         
+          <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+          <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="2H RAM Vaxchora Projected Doses">
+           2H RAM Vaxchora Projected Doses : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.H_RAM_Projected_Vaxchora_2__c }">
+            {!spHistory.H_RAM_Projected_Vaxchora_2__c }
+            </span>
+        </lightning:layoutItem>               
+                        
+        <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+          <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title=" 1H- Actual Vaxchora Doses">
+            1H- Actual Vaxchora Doses : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.X1H_Actual_Vaxchora_Doses__c}">
+            {!spHistory.X1H_Actual_Vaxchora_Doses__c}
+            </span>
+        </lightning:layoutItem>
+             
+         <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="2H- Actual Vaxchora Doses">
+            2H- Actual Vaxchora Doses : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.X2H_Actual_Vaxchora_Doses__c}">
+            {!spHistory.X2H_Actual_Vaxchora_Doses__c}
+            </span>
+        </lightning:layoutItem>                
+                        
+        <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="1H Vaxchora Gap">
+            1H Vaxchora Gap : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.X1H_Vaxchora_Gap__c }">
+            {!spHistory.X1H_Vaxchora_Gap__c}
+            </span>
+        </lightning:layoutItem>
+
+           
+        <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6" >
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title=" 2H Vaxchora Gap">
+            2H Vaxchora Gap : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.X2H_Vaxchora_Gap__c }">
+           {!spHistory.X2H_Vaxchora_Gap__c}
+            </span>
+        </lightning:layoutItem>
+                        
+    </lightning:layout>    
+         </lightning:accordionSection>
+                        </lightning:accordion>
+      <br></br>
+                        
+                        
+                        
+                         <lightning:accordion allowMultipleSectionsOpen="true" class="slds-section__title slds-theme_shade"
+        onsectiontoggle="{! c.handleSectionToggle }">
+                <lightning:accordionSection  name="Current Year Pricing Program" label="Current Year Pricing Program" >
+      
+ 
+         <!--<div class="slds-section slds-is-open">
+  <h3 class="slds-section__title slds-theme_shade">
+    <span class="slds-truncate slds-p-horizontal_small" title="Section Title"><b>Current Year Pricing Program</b></span>
+  </h3>
+  <div aria-hidden="false" class="slds-section__content">-->
+    
+       <lightning:layout multipleRows="true">
+           <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Pricing Discount Programs">
+           Pricing Discount Programs : &nbsp; &nbsp;
+            </span>
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Pricing_Discount_Programs__c }">
+           <div class="cSalesplannerHistoryTracking wrapText fieldValue" width="50rem;">{!spHistory.Pricing_Discount_Programs__c}</div>
+            </span>
+        </lightning:layoutItem> 
+             
+             <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Vaxchora Doses Commitment">
+           Vaxchora Doses Commitment : &nbsp; &nbsp; 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Vaxchora_Doses_Commitment__c }">
+           {!spHistory.Vaxchora_Doses_Commitment__c}
+            </span>
+        </lightning:layoutItem>
+             
+            <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Vaxchora Ordered Doses" >
+           Vaxchora Ordered Doses : &nbsp; &nbsp;
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Vaxchora_Ordered_Doses__c }">
+           {!spHistory.Vaxchora_Ordered_Doses__c}
+            </span>
+        </lightning:layoutItem> 
+           <!--<lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Name">
+           <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Name">
+           Vaxchora Doses Commitment : &nbsp; &nbsp; 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Name }">
+           {!spHistory.Vaxchora_Doses_Commitment__c}
+            </span>
+        </lightning:layoutItem>-->
+            <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Vivotif Committed Doses">
+             Vivotif Committed Doses : &nbsp; &nbsp; 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Vivotif_Committed_Doses__c}">
+           {!spHistory.Vivotif_Committed_Doses__c}
+            </span>
+        </lightning:layoutItem>
+             
+           
+           <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Contact Signed Date">
+           Contract Signed Date : &nbsp; &nbsp; 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Contract_Signed_Date__c }">
+           {!spHistory.Contract_Signed_Date__c}
+            </span>
+        </lightning:layoutItem> 
+                    
+             
+            <!-- <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Created By" style="font-family:'Salesforce Sans',Arial,sans-serif;font-size: 12px">
+           Created By &nbsp; &nbsp; 
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Name }">
+                 
+                     {!spHistory.CreatedBy.Name}
+            </span>
+        </lightning:layoutItem>
+             
+             <lightning:layoutItem padding="around-small" size="6" smallDeviceSize="12" mediumDeviceSize="6">
+        <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="Last Modified By" style="font-family:'Salesforce Sans',Arial,sans-serif;font-size: 12px">
+           Last Modified By &nbsp; &nbsp;
+            </span>
+            
+            <span class="slds-size_1-of-2 slds-max-small-size_1-of-1" title="{!spHistory.Name }">
+            
+                {!spHistory.LastModifiedBy.Name} 
+            </span>
+        </lightning:layoutItem>-->
+                
+         </lightning:layout>
+
+                 
+                             </lightning:accordionSection>
+                        </lightning:accordion>
+                      
+</div>
+                    </lightning:layout>
+                         </lightning:accordionSection>
+                    </lightning:accordion>
+                   
+     </aura:iteration>
+            	<aura:if isTrue="{! v.isAdmin}">
+                    <aura:if isTrue="{!v.spHistoryList.length!=0}">
+                       <div class="mobileButton">
+                            <lightning:button variant="brand" label="Retrieve" title="Retrive Sales Planner" onclick="{!c.handleonRetriveClick }" />
+                        </div>
+                    </aura:if>
+                </aura:if> 
+            </div>
+        <footer class="slds-card__footer">
+        </footer>
+    </article>
+</aura:component>

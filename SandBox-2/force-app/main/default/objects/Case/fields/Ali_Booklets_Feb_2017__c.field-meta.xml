@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ali_Booklets_Feb_2017__c</fullName>
+    <description>PAX-US-0111 [&quot;Ali Booklets&quot; Feb 2017]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>PAX-US-0111 [&quot;Ali Booklets&quot; Feb 2017]</inlineHelpText>
+    <label>&quot;Ali Booklets&quot; Feb 2017</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,59 @@
+<aura:component controller="calendarController" implements="flexipage:availableForAllPageTypes"> 
+    <aura:attribute name="customDataCal" type="object"/>
+    <aura:attribute name="TaskForm" type="Task" default="{'sobjectType':'Task'}"/>
+    <aura:attribute name="selectedCalendarUserRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedCalendarUserParentRecord" type="sObject" default="{}"/> 
+    <aura:attribute type="String" name="headerDate"/>
+    <aura:attribute type="String" name="view" default="month"/>
+    <aura:attribute name="events" type="Event[]" description="A list of events to display on the calendar"/>
+    <aura:attribute name="PageHeading" type="String" default="Task List" />
+    
+    <aura:attribute name="iconName" type="String" />
+    <aura:attribute type="String" name="startDate"/>
+    <aura:attribute type="String" name="endDate"/>
+    <aura:attribute name="listViewData" type="Event[]" /> 
+    <aura:attribute name="listViewPTOData" type="Event[]"/> 
+    <aura:attribute name="isOpenModal" type="boolean" default="false"/>
+    <aura:attribute type="String" name="alertPTOMessage" default="User is on PTO, Please select another day."/>
+    
+    <aura:attribute name="listHolidays" type="List" />
+    <aura:attribute name="HolidayMessage" type="String" default="Selected date is a Holiday, Please select another day." />
+    <!-- EVENTS -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.customDataCal}" action="{!c.jsLoaded}"/> 
+    <aura:handler name="change" value="{!v.events}" action="{!c.loadEvents}"/>
+    <aura:handler name="change" value="{!v.selectedCalendarUserRecord}" action="{!c.selectedCalendarUserRecordChange}"/>
+
+    <!-- BODY -->
+    <div class="slds slds-box slds-m-around--small">
+      <div class="slds-grid slds-wrap customHeader">
+          <lightning:layout verticalAlign="stretch" multipleRows="true" class="fullPage">
+                <lightning:layoutItem flexibility="auto" size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="4" padding="around-small">
+                    <c:customLookup getAll="false" fieldName="customUserID" objectAPIName="user" IconName="standard:user" 
+                           selectedRecord="{!v.selectedCalendarUserRecord}" 
+                           selectedParentRecord="{!v.selectedCalendarUserParentRecord}" 
+                           label="User" showLabel="false"/> 
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="5" padding="around-small" class="centerText">
+                    <lightning:button iconName="utility:chevronleft" variant="bare" onclick="{!c.prev}"/>
+                    <span class="rightSpace"><strong><ui:outputText value="{!v.headerDate}"/></strong></span>
+                    <lightning:button iconName="utility:chevronright" variant="bare" onclick="{!c.next}"/>
+                </lightning:layoutItem>
+                <lightning:layoutItem flexibility="auto" size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="3" padding="around-small" class="rightText">
+                    <lightning:buttonGroup class="slds-grid--align-end slds-wrap">
+                        <lightning:button label="Today" variant="brand" aura:id="buttonLabel"/>
+                        <lightning:buttonMenu alternativeText="Show menu" class="slds-button_last" onselect="{! c.handleSelect }" >
+                            <lightning:menuItem	label="Today" value="today"/>
+                            <lightning:menuItem label="Day" value="basicDay" />
+                            <lightning:menuItem label="Week" value="basicWeek" />
+                            <lightning:menuItem label="Month" value="month" />
+                        </lightning:buttonMenu>
+                    </lightning:buttonGroup>
+                </lightning:layoutItem>
+          </lightning:layout>
+      </div>
+      <div id="calendar" />
+    </div>
+    <!-- /BODY -->
+    
+</aura:component>

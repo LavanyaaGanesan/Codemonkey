@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RS_Monthly_Vivotif_Direct_Rollup__c</fullName>
+    <externalId>false</externalId>
+    <label>old_Monthly Vivotif Direct Rollup</label>
+    <summarizedField>IMS_Product__c.Doses__c</summarizedField>
+    <summaryFilterItems>
+        <field>IMS_Product__c.Product__c</field>
+        <operation>contains</operation>
+        <value>VIVOTIF DIRECT</value>
+    </summaryFilterItems>
+    <summaryForeignKey>IMS_Product__c.IMS_Month_Ref__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X1H_Actual_Vaxchora_Doses__c</fullName>
+    <externalId>false</externalId>
+    <label>1H- Actual Vaxchora Doses</label>
+    <summarizedField>Sales_Data__c.Doses_Month_0__c</summarizedField>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Name</field>
+        <operation>equals</operation>
+        <value>VAXCHORA</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2019</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>6/30/2019</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Sales_Data__c.Account__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

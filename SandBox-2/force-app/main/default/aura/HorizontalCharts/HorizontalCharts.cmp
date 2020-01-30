@@ -1,0 +1,159 @@
+<aura:component controller="HorizontalMonthlychartsDisplay" 
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.loadChart}"/>
+    
+    <aura:attribute name="selectedYear" type="String" default="2"></aura:attribute>
+    <aura:attribute name="selectedQuarterly" type="String" default="3"></aura:attribute>
+    <aura:attribute name="selectedMonth" type="String" default=""></aura:attribute>
+    <aura:attribute name="PageHeading" type="String" default="Product Chart"/>
+    
+    
+    <aura:attribute name="resetChart" type="Boolean" default="false"></aura:attribute> 
+    <aura:attribute name="dataObj" type="Integer[]"/>
+    <aura:attribute name="labels" type="String[]"/>
+    <aura:attribute name = "QuarterlyChartList" type ="Sales_Data__c"/>
+    <aura:attribute name = "ListQuarterlyChart" type ="Sales_Data__c"/>
+    <aura:attribute name = "Section" type ="String" default="2"/>    
+    <aura:attribute name = "PName" type ="String" default="VIVOTIF BERNA"/>
+    <aura:attribute name = "SYear" type ="String" default="LAST YEAR"/>
+    <aura:attribute name="recordId" type="String" default="a1961000009IRbzAAG"/>
+    <aura:attribute name = "proName" type ="String" default="VAXCHORA"/>
+    <aura:attribute name = "fYear" type ="String" default="LAST YEAR"/> 
+    <aura:attribute name = "color" type ="String" default="#2496DD"/>
+    <aura:attribute name = "Name1" type ="String" default="Vivotif Doses"/>
+    
+    <!--*********************************-->
+    <aura:attribute name ="QuarterlyChartListVax" type ="Sales_Data__c"/>
+    <aura:attribute name="vaxResetChart" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="vaxDataObj" type="Integer[]"/>
+    <aura:attribute name="vaxLabels" type="String[]"/>    
+    <aura:attribute name = "vaxSection" type ="String" default="1"/>
+    <aura:attribute name = "vaxPName" type ="String" default="VAXCHORA"/>
+    <aura:attribute name = "vaxColor" type ="String" default="#28B048"/>
+    <aura:attribute name = "vaxName1" type ="String" default="Vaxchora Doses"/> 
+    <aura:attribute name = "vaxSYear" type ="String" default="LAST YEAR"/>
+    
+    
+    
+    <aura:attribute name = "QuarterlyChartListTyp" type ="Sales_Data__c"/>
+    <aura:attribute name="TypResetChart" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="TypDataObj" type="Integer[]"/>
+    <aura:attribute name="TypLabels" type="String[]"/>    
+    <aura:attribute name = "TypSection" type ="String" default="3"/>
+    <aura:attribute name = "TypPName" type ="String" default="TYPHIM VI 20 DOSE,TYPHIM VI SINGLE DOSE,VIVOTIF BERNA"/>
+    <aura:attribute name = "TypColor" type ="String" default="#278D9B"/>
+    <aura:attribute name = "TypName1" type ="String" default="Typhoid Doses"/> 
+    <aura:attribute name = "TypSYear" type ="String" default="LAST YEAR"/>
+    <!--****************************************************************--> 
+    <!--aura:if isTrue="{!$Browser.formFactor=='PHONE'}"-->
+    <!--********************************-->
+    <!--aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}"-->
+    <div class="slds-card__header slds-grid" style="padding-left:0px;">
+        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+            <div class="slds-media__figure">
+                <lightning:icon iconName="custom:custom102" size="medium" class="slds-float_left" />
+            </div>
+            <div class="slds-media__body">
+                <h2 class="slds-card__header-title">
+                     <aura:if isTrue="{!$Browser.formFactor!='TABLET'}">
+                    <a class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                        <span style="color:black;">{!v.PageHeading}</span>
+                    </a>
+                    </aura:if>
+                     <aura:if isTrue="{!$Browser.formFactor=='TABLET'}">
+                    <a class="slds-card__header-link slds-truncate" title="{!v.PageHeading}">
+                        <span style="color:black;"><b>{!v.PageHeading}</b></span>
+                    </a>
+                    </aura:if>
+                </h2>
+            </div>
+            <div class="slds-is-relative floatRight">
+                
+            </div>            
+        </header>
+    </div>
+    <hr style="margin: 1rem 0;"/>
+    <!--********************************-->
+    
+    <div style="padding:10px;">    
+        <div class="slds-box" style="padding:0px">
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="4" 
+                                      largeDeviceSize="4" padding="around-small">
+                    <lightning:select name="select1" Label="Select1" value="{!v.selectedYear}" onchange="{!c.refreshedChart}">
+                        <option value="1">Current year</option>
+                        <option value="0">Previous year</option>
+                        <!--aura:if isTrue="{!$Browser.formFactor!='PHONE'}"-->
+                        <option value="2">{!$Label.c.CY_PY}</option>
+                        <!--/aura:if-->
+                    </lightning:select>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="4" 
+                                      largeDeviceSize="4" padding="around-small">
+                    <lightning:select name="select2" Label="Select2" value="{!v.selectedQuarterly}" onchange="{!c.refreshedChart}">
+                        <option value="">Please select an option to display</option>
+                        <!--aura:if isTrue="{!$Browser.formFactor=='PHONE'}"-->
+                        <option value="1">Monthly</option>
+                        <!--/aura:if-->
+                        <option value="3">Quarterly</option>
+                        <option value="6">Half yearly</option>
+                        <option value="12">Yearly</option>
+                    </lightning:select>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="4" 
+                                      largeDeviceSize="4" padding="around-small">
+                    
+                    <aura:if isTrue="{!(v.selectedQuarterly=='1')}"> 
+                        <lightning:select name="select3" Label="Select3" value="{!v.selectedMonth}" onchange="{!c.refreshedChart}">
+                            <option value="">Please select Month to display</option>
+                            <option value="1">Jan</option>
+                            <option value="2">Feb</option>
+                            <option value="3">Mar</option>
+                            <option value="4">Apr</option>
+                            <option value="5">May</option>
+                            <option value="6">Jun</option>
+                            <option value="7">Jul</option>
+                            <option value="8">Aug</option>
+                            <option value="9">Sep</option>
+                            <option value="10">Oct</option>
+                            <option value="11">Nov</option>
+                            <option value="12">Dec</option>
+                        </lightning:select>
+                    </aura:if>
+                </lightning:layoutItem>
+            </lightning:layout>
+            
+        </div>
+        <br></br>
+        <div id="container" style="width: 100%;">
+            <div class="slds-box">
+                <aura:if isTrue="{!v.vaxResetChart}">
+                    <c:ChartJS cResetChart="{!v.vaxResetChart}" cDataObj="{!v.vaxDataObj}" cLabels="{!v.vaxLabels}"
+                               cSection="{!v.vaxSection + v.recordId}" cPName="{!v.vaxPName}"
+                               cColor="{!v.vaxColor}" cName1="{!v.vaxName1}" cChartName="VAXCHORA" />
+                </aura:if>
+            </div>
+            <br></br>
+            <div class="slds-box">
+                <aura:if isTrue="{!v.resetChart}">
+                    <c:ChartJS cResetChart="{!v.resetChart}" cDataObj="{!v.dataObj}" cLabels="{!v.labels}"
+                               cSection="{!v.Section + v.recordId}" cPName="{!v.PName}"
+                               cColor="{!v.color}" cName1="{!v.Name1}" cChartName="VIVOTIF"/>  
+                </aura:if>      
+            </div>
+            <br></br>
+            <div class="slds-box">
+                <aura:if isTrue="{!v.TypResetChart}">
+                    <c:ChartJS cResetChart="{!v.TypResetChart}" cDataObj="{!v.TypDataObj}" cLabels="{!v.TypLabels}"
+                               cSection="{!v.TypSection + v.recordId}" cPName="{!v.TypPName}"
+                               cColor="{!v.TypColor}" cName1="{!v.TypName1}" cChartName="TYPHOID"/>
+                </aura:if> 
+            </div>
+        </div>
+        <!--/aura:if-->
+    </div>
+    
+    
+</aura:component>

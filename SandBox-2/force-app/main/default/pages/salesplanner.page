@@ -1,0 +1,3 @@
+<apex:page controller="NewTaskMapApex" action="{!pageredir}">
+    Test Page
+</apex:page>

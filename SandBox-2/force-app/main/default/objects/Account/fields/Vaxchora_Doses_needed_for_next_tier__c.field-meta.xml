@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Doses_needed_for_next_tier__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>For all Purple contracts, this field is not applicable 
+It shows you how many doses are needed in order to achieve the next contract tier.</inlineHelpText>
+    <label>Vaxchora Doses needed for next tier</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

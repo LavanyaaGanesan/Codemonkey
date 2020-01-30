@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yellow_fever_vaccination_clinics__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>The clinics that will administer yellow fever due to the shortage of YF-Vax( Sanofi) till mid- 2018.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check the box if it is one of the yellow fever clinics between mid-2017 until mid-2018</inlineHelpText>
+    <label>Yellow fever vaccination clinics</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Stage__c</fullName>
+    <externalId>false</externalId>
+    <label>Account Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dual Product Loyal</fullName>
+                <default>false</default>
+                <label>Dual Product Loyal</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Supporter</fullName>
+                <default>false</default>
+                <label>Vaxchora Supporter</label>
+            </value>
+            <value>
+                <fullName>Vivotif Supporter</fullName>
+                <default>false</default>
+                <label>Vivotif Supporter</label>
+            </value>
+            <value>
+                <fullName>Travel Vaccinator</fullName>
+                <default>false</default>
+                <label>Travel Vaccinator</label>
+            </value>
+            <value>
+                <fullName>PaxVax Naïve</fullName>
+                <default>false</default>
+                <label>PaxVax Naïve</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

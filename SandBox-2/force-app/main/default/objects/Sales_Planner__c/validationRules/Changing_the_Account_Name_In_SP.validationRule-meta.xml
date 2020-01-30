@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Changing_the_Account_Name_In_SP</fullName>
+    <active>true</active>
+    <description>This restricts the user to change the name of the account from the Sales planner page</description>
+    <errorConditionFormula>AND(ISCHANGED( Account_Sales_Planner__c ), 
+$User.Id &lt;&gt; &quot;00561000000df4U&quot;)</errorConditionFormula>
+    <errorDisplayField>Account_Sales_Planner__c</errorDisplayField>
+    <errorMessage>Click the account and change the name from the Account page. It will get automatically updated in the Sales Planner page.</errorMessage>
+</ValidationRule>

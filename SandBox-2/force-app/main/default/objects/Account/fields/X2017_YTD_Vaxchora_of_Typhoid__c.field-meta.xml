@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2017_YTD_Vaxchora_of_Typhoid__c</fullName>
+    <externalId>false</externalId>
+    <formula>if( X2017_YTD_Typhoid_doses__c &gt;0, X2017_YTD_Vaxchora_doses__c / X2017_YTD_Typhoid_doses__c ,null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>2017 Vaxchora % of Typhoid</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <type>Percent</type>
+</CustomField>

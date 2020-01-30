@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductDiscussed_Required_field</fullName>
+    <active>true</active>
+    <description>The Product Discussed becomes a required field when Status is Completed.</description>
+    <errorConditionFormula>And( 
+ISPICKVAL(Status, &quot;Completed&quot;),
+ISBLANK(TEXT(Product_Discussed__c)))</errorConditionFormula>
+    <errorDisplayField>Product_Discussed__c</errorDisplayField>
+    <errorMessage>Select a picklist value from the &quot;Topic of Discussion&quot; field to save the record.</errorMessage>
+</ValidationRule>

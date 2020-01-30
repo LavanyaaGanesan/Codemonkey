@@ -1,0 +1,6 @@
+<aura:component  implements="lightning:isUrlAddressable">
+    <lightning:card iconName="standard:task" title="NavigateTo">
+        <lightning:formattedText class="slds-p-left_small"
+                    value="{!v.pageReference.state.recordId}"/>
+    </lightning:card>
+</aura:component>

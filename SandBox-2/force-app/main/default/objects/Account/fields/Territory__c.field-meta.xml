@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Territory__c</fullName>
+    <externalId>false</externalId>
+    <formula>if(BillingState=&#39;AL&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;AK&#39;,&#39;West&#39;,
+if(BillingState=&#39;AZ&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;AR&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;CA&#39;,&#39;West&#39;,
+if(BillingState=&#39;CO&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;CT&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;DE&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;FL&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;GA&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;HI&#39;,&#39;West&#39;,
+if(BillingState=&#39;ID&#39;,&#39;West&#39;,
+if(BillingState=&#39;IL&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;IN&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;IA&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;KS&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;KY&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;LA&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;ME&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;MD&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;MA&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;MI&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;MN&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;MS&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;MO&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;MT&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;NE&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;NV&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;NH&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;NJ&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;NM&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;NY&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;NC&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;ND&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;OH&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;OK&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;OR&#39;,&#39;West&#39;,
+if(BillingState=&#39;PA&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;RI&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;SC&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;SD&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;TN&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;TX&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;UT&#39;,&#39;Southwest&#39;,
+if(BillingState=&#39;VT&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;VA&#39;,&#39;Southeast&#39;,
+if(BillingState=&#39;WA&#39;,&#39;West&#39;,
+if(BillingState=&#39;WV&#39;,&#39;Northeast&#39;,
+if(BillingState=&#39;WI&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;WY&#39;,&#39;Midwest&#39;,
+if(BillingState=&#39;DC&#39;,&#39;Northeast&#39;,
+&#39;Other&#39;)
+))))))))
+))))))))
+))))))))
+))))))))
+))))))))
+))))))))
+))</formula>
+    <label>Territory</label>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
