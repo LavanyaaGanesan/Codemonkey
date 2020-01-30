@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_ShipTo_Date_Direct__c</fullName>
+    <externalId>false</externalId>
+    <label>Last ShipTo Date Direct</label>
+    <summarizedField>Daily_Sales_Data__c.ShipTo_Date__c</summarizedField>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2020</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2020</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Type__c</field>
+        <operation>equals</operation>
+        <value>Direct</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Daily_Sales_Data__c.Account__c</summaryForeignKey>
+    <summaryOperation>max</summaryOperation>
+    <type>Summary</type>
+</CustomField>

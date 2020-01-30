@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vivotif_Leave_Behind__c</fullName>
+    <description>PAX-US-0161  [Vivotif Leave Behind]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>PAX-US-0161  [Vivotif Leave Behind]</inlineHelpText>
+    <label>Vivotif Leave Behind</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

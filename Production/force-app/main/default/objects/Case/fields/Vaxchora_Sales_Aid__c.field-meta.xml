@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Sales_Aid__c</fullName>
+    <description>Vaxchora Sales Aid (For internal shipments only)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Strictly for internal knowledge purpose.They weren&#39;t approved to be directly shipped or left behind with the customers.</inlineHelpText>
+    <label>Vaxchora Sales Aid</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

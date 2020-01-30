@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opt_In</fullName>
+    <active>true</active>
+    <description>This field is required if the Requested Doses field has a value.</description>
+    <errorConditionFormula>And(Opt_In__c= False, NOT(ISBLANK( Requested_Doses__c)))</errorConditionFormula>
+    <errorDisplayField>Opt_In__c</errorDisplayField>
+    <errorMessage>Check the Opt_In if the Requested Doses field has a value.</errorMessage>
+</ValidationRule>

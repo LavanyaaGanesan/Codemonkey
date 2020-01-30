@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vivotif_PI__c</fullName>
+    <description>PAX-VIVOTIF-PI [Vivotif Prescribing Information]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>PAX-VIVOTIF-PI [Vivotif Prescribing Information]</inlineHelpText>
+    <label>Vivotif PI</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

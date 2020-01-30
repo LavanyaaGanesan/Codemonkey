@@ -1,0 +1,163 @@
+<aura:component controller="customTaskController" implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <!-- LIBRARIES -->
+    <ltng:require styles="{!$Resource.fullCalendar + '/node_modules/fullcalendar/dist/fullcalendar.min.css'}"
+                  scripts="{!join(',',
+                           $Resource.fullCalendar + '/node_modules/jquery/dist/jquery.min.js',
+                           $Resource.fullCalendar + '/node_modules/moment/min/moment.min.js',
+                           $Resource.fullCalendar + '/node_modules/jquery-ui-dist/jquery-ui.min.js',
+                           $Resource.fullCalendar + '/node_modules/fullcalendar/dist/fullcalendar.min.js',
+                           $Resource.Popper + '/popper.min.js',
+                           $Resource.Bootstrap + '/bootstrap.min.js')}"
+                  afterScriptsLoaded="{!c.jsLoaded}"/>    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="change" value="{!v.events}" action="{!c.loadEvents}"/>
+    
+    <aura:attribute name= "listViewDataCalendar" type="object"/>
+    <aura:attribute type="String" name="startDate"/>
+    <aura:attribute type="String" name="endDate"/>
+    <aura:attribute name="events" type="Event[]" description="A list of events to display on the calendar"/>
+    <aura:attribute name="customData" type="object"/>
+    <aura:attribute name="customDataParent" type="object"/>
+    <aura:attribute name="customListViewData" type="object"/>
+    <aura:attribute name="dataLoaded" type="boolean"/>
+    <aura:attribute name="customDataMod" type="object"/>
+    
+    <aura:attribute name="listViewLoaded" type="boolean" default="false"/>
+    <aura:attribute name="obejctCreated" type="boolean" default="false"/>
+    
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="mydata" type="Object"/>
+    <aura:attribute name="selectedDate" type="String"/>
+    
+    <aura:attribute name="mlistViewData" type="Event[]" />
+    <aura:attribute name="PageHeading" type="String" default="Task List" />
+    
+    <aura:handler name="change" value="{!v.customData}" action="{!c.customDataChange}"/>
+    <lightning:card>
+        <aura:set attribute="title">
+        </aura:set>
+        <aura:set attribute="footer">            
+        </aura:set>
+        
+        <aura:if isTrue="{!v.obejctCreated}">
+            <lightning:layout  multipleRows="true"> 
+                <aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">                
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6">
+                    <c:customListViewComponent customListViewData="{!v.customData}"
+                                               dataLoaded="{!v.dataLoaded}" />
+                    <c:modalPopup customDataMod="{!v.customData}"/>
+                </lightning:layoutItem>
+                </aura:if>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6">
+                    <aura:if isTrue="{!v.obejctCreated}" >
+                        <c:Calendar customDataCal="{!v.customData}" listViewData="{!v.mlistViewData}"/>
+                    </aura:if>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:if>
+        
+        
+        
+        <aura:if isTrue="{!(v.mlistViewData.length>0)}">
+            <lightning:layout > 
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12">
+                    <div style="padding:5px">
+                        <article class="slds-card slds-card_boundary" id="aTaskList" >
+                            <div class="slds-card__header slds-grid">
+                                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                    
+                                    <div class="slds-media__body slds-box slds-theme_shade" style="height: 3.5rem;">
+                                        <div class="slds-media__figure slds-p-left_small slds-p-top_small">  
+                                            <lightning:icon iconName="standard:task" size="medium" class="slds-float_left" />
+                                            
+                                        </div>
+                                        
+                                        <h2 class="slds-card__header-title slds-text-heading--medium slds-p-right_small" style="padding-top: 4px;" color="blue">
+                                            &nbsp;
+                                            <span class="slds-card__header--large" title="{!v.PageHeading}">{!v.PageHeading}</span> (<span>{!v.mlistViewData.length}</span>)
+                                            
+                                        </h2>
+                                    </div>
+                                    
+                                </header>
+                            </div>
+                            <div class="slds-card__body">
+                                <!--div class="slds-scrollable" style="max-height:15rem;"-->
+                                <aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">
+                                    <ui:scrollerWrapper class="sWrapTest">
+                                        <div class="slds-text-align_center">
+                                            <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+                                                <thead>
+                                                    <tr class="slds-text-heading--label">
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Subject">Subject</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Type">Account Name</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Start Date">Start Date</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="End Date">End Date</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Status">Status</div></th>
+                                                    </tr>
+                                                </thead>   
+                                                <tbody>
+                                                    <aura:iteration var ="t" items ="{!v.mlistViewData}" indexVar="cnt">
+                                                        <tr class="slds-text-heading--label">
+                                                            <th scope="row"><div class="cCalendar wrapText" title="{!t.Subject}">
+                                                                <a class="{!v.class}" href="{!'/' + t.Id}"> {!t.Subject}</a></div></th>
+                                                            <td><div class="cCalendar wrapText" title="{!t.Account.Name}">{!t.Account.Name}</div></td>
+                                                            <!--<td class="slds-text-align_right" style="width:32%"  title="Subject"><b>Subject</b></td>
+                                <td class="slds-truncate" title="{!t.Subject}"><a class="{!v.class}" href="{!'/' + t.Id}">{!t.Subject}</a></td>-->
+                                                            <td><div class="cCalendar wrapText"><lightning:formattedDateTime value="{!t.ActivityDateTime__c}" year="numeric" month="short" day="numeric" hour="2-digit"
+                                 minute="2-digit" hour12="true"/></div></td>
+                                                            <td><div class="cCalendar wrapText"><lightning:formattedDateTime value="{!t.EndDate__c}" year="numeric" month="short" day="numeric" hour="2-digit"
+                                 minute="2-digit" hour12="true"/></div></td>
+                                                            <td><div class="cCalendar wrapText" title="{!t.Status}">{!t.Status}</div></td>
+                                                        </tr>
+                                                    </aura:iteration>
+                                                </tbody>
+                                            </table> 
+                                        </div>   
+                                    </ui:scrollerWrapper>
+                                </aura:if>
+                                <aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}">
+                                    <ui:scrollerWrapper class="sWrapTestMobile">
+                                        <div class="slds-text-align_center">
+                                            <table class="slds-table slds-table--bordered slds-table--striped slds-table--cell-buffer slds-table--fixed-layout">
+                                                <thead>
+                                                    <tr class="slds-text-heading--label">
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Subject">Subject</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Type">Account Name</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Start Date">Start Date</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="End Date">End Date</div></th>
+                                                        <th scope="col"><div class="cCalendar wrapText" title="Status">Status</div></th>
+                                                    </tr>
+                                                </thead>   
+                                                <tbody>
+                                                    <aura:iteration var ="t" items ="{!v.mlistViewData}" indexVar="cnt">
+                                                        <tr class="slds-text-heading--label">
+                                                            <th scope="row"><div class="cCalendar wrapText" title="{!t.Subject}">
+                                                                <a class="{!v.class}" href="{!'/' + t.Id}"> {!t.Subject}</a></div></th>
+                                                            <td><div class="cCalendar wrapText" title="{!t.Account.Name}">{!t.Account.Name}</div></td>
+                                                            <!--<td class="slds-text-align_right" style="width:32%"  title="Subject"><b>Subject</b></td>
+                                <td class="slds-truncate" title="{!t.Subject}"><a class="{!v.class}" href="{!'/' + t.Id}">{!t.Subject}</a></td>-->
+                                                            <td><div class="cCalendar wrapText"><lightning:formattedDateTime value="{!t.ActivityDateTime__c}" year="numeric" month="short" day="numeric" hour="2-digit"
+                                 minute="2-digit" hour12="true"/></div></td>
+                                                            <td><div class="cCalendar wrapText"><lightning:formattedDateTime value="{!t.EndDate__c}" year="numeric" month="short" day="numeric" hour="2-digit"
+                                 minute="2-digit" hour12="true"/></div></td>
+                                                            <td><div class="cCalendar wrapText" title="{!t.Status}">{!t.Status}</div></td>
+                                                        </tr>
+                                                    </aura:iteration>
+                                                </tbody>
+                                            </table> 
+                                        </div>   
+                                    </ui:scrollerWrapper>
+                                </aura:if>
+                                <!--/div-->    
+                            </div>
+                            <footer class="slds-card__footer">
+                            </footer>
+                        </article> 
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </aura:if>
+    </lightning:card>
+</aura:component>

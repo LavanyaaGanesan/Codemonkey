@@ -1,0 +1,674 @@
+<aura:component controller="customTaskController" implements="flexipage:availableForAllPageTypes">
+	<!-- ATTRIBUTES -->
+    <aura:attribute name="isPTO" type="boolean" default="false"/>
+    <aura:attribute name="gAccountName" type="boolean" default="false"/> 
+    <aura:attribute name="accountName" type="String" default=""/> 
+    <aura:attribute name="taskType" type="String" default="In Person"/> 
+    
+    <aura:attribute name="customDataCreate" type="object"/>    
+    <aura:attribute name="showCallStage" type="boolean" default="false"/>
+    <aura:attribute name="requiredCallStage" type="boolean" default="false"/>
+    <aura:attribute name="requiredVaxchoraCallStage" type="boolean" default="false"/>    
+    <aura:attribute name="requiredComments" type="boolean" default="false"/>
+    <aura:attribute name="activeDelete" type="boolean" default="false"/>    
+    <aura:attribute name="requiredAccount" type="boolean" default="true"/>
+    <aura:attribute name="requiredContact" type="boolean" default="false"/>    
+    <aura:attribute name="objectAssignTo" type="String" default="User"/>
+    <aura:attribute name="objectAccount"  type="String" default="Sales_Planner__c"/>
+    <aura:attribute name="objectContact"  type="String" default="Contact"/>
+    <aura:attribute name="selectedCalendarUserRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedCalendarUserParentRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedRelatedToAccountRecord" type="sObject" default="{}"/>
+    <aura:attribute name="selectedRelatedToAccountParentRecord" type="sObject" default="{}"/>
+  	<aura:attribute name="selectedRelatedToContactRecords" type="sObject[]" default="[]"/>
+    <aura:attribute name="activeOthers" type="boolean" default="false"/>
+    <aura:attribute name="toggleProductDiscussed" type="boolean" default="true"/>
+    
+    <aura:attribute name="TaskForm" type="Task" default="{'sobjectType':'Task'}"/>
+    <aura:attribute name="disabledDateTime" type="Boolean" default="false"/>
+    
+  	<!--Register the component level event-->
+    <aura:registerEvent name="oSelectedRecordEvent" type="c:selectedsObjectRecordEvent"/>
+    <aura:registerEvent name="ApplicationEvent" type="c:customCalendarAppEvent"/>
+    
+    <!-- HANDLER -->     
+ 	<aura:handler name="change" value="{!v.selectedRelatedToAccountRecord}" action="{!c.selectedRelatedToAccountRecordChange}" /> 
+ 	<aura:handler name="change" value="{!v.selectedRelatedToContactRecords}" action="{!c.validateContactMultiSelect}" /> 
+    <aura:handler name="change" value="{!v.customDataCreate}" action="{!c.customDataChange}"/>
+    <!--aura:handler name="change" value="{!v.TaskForm.EndDate__c}" action="{!c.onChangeValidateExistingTask}"/ -->
+       
+    <aura:attribute name="isVaxchora" type="boolean" default="false"/>
+    <aura:attribute name="isVivotif" type="boolean" default="false"/>
+    <aura:attribute name="requiredProductDiscussed" type="boolean" default="false"/> 
+    <aura:attribute name="requiredResourcesLeft" type="boolean" default="false"/>
+    <aura:attribute name="requiredResourcesLeftOnType" type="boolean" default="false"/>    
+    
+    <!--Start: Recrurence Code -->   
+    <aura:attribute name="validateRecurrence" type="boolean" default="false"/>
+    <aura:attribute name="disableRecurrenceOnEdit" type="boolean" default="false"/>    
+    <aura:attribute name="recurType" type="String" default=""/>
+    
+    <aura:attribute name="disabledRecurrance" type="Boolean" default="false"/>
+    <aura:attribute name="multipleContacts" type="Boolean" default="false"/>
+    
+    <aura:attribute name="DailyVariant" type="String" default="brand"/>
+    <aura:attribute name="WeeklyVariant" type="String" default="neutral"/>
+    <aura:attribute name="MonthlyVariant" type="String" default="neutral"/>
+    
+    <aura:attribute name="createRecSerTsk" type="Boolean" default="false"/>
+    <aura:attribute name="dOptions" type="Boolean" default="true"/>
+    <aura:attribute name="wOptions" type="Boolean" default="false"/>
+    <aura:attribute name="mOptions" type="Boolean" default="false"/>
+    <aura:attribute name="yOptions" type="Boolean" default="false"/>
+    <aura:attribute name="eNumOfDays" type="Boolean" default="true"/>
+    <aura:attribute name="eWeekDay" type="Boolean" default="false"/>
+    <aura:attribute name="dNumberOfDays" type="Integer" default="1"/>
+    <aura:attribute name="reNumberOfDays" type="Integer" default="1"/>
+    <aura:attribute name="wSun" type="Boolean" default="false"/>
+    <aura:attribute name="wMon" type="Boolean" default="true"/>
+    <aura:attribute name="wTue" type="Boolean" default="false"/>
+    <aura:attribute name="wWed" type="Boolean" default="false"/>
+    <aura:attribute name="wThu" type="Boolean" default="false"/>
+    <aura:attribute name="wFri" type="Boolean" default="false"/>
+    <aura:attribute name="wSat" type="Boolean" default="false"/>
+        
+    <aura:attribute name="month_ofEvery" type="Integer" default="1"/>
+    <aura:attribute name="month_onDayVal" type="Integer" default="1"/>
+    
+    <aura:attribute name="month_onDay" type="Boolean" default="true"/>    
+    
+    <aura:attribute name="month_ontheDayof" type="String" default="First"/>
+    <aura:attribute name="month_ontheEvery" type="Integer" default="1"/>
+    <aura:attribute name="month_ontheDay" type="String" default="Day"/>
+    <aura:attribute name="month_onthe" type="Boolean" default="flase"/>
+    <aura:attribute name="month_ofEveryMonthDay" type="Boolean" default="flase"/>
+    
+    <aura:attribute name="year_onEvery" type="Boolean" default="false"/>
+    <aura:attribute name="year_onEveryMonth" type="String" default="January"/>
+    <aura:attribute name="year_onEveryMonthOf" type="String" default="1"/>
+    <aura:attribute name="year_onThe" type="Boolean" default="false"/>
+    <aura:attribute name="year_onTheDayOf" type="String" default="1st"/>
+    <aura:attribute name="year_onTheDayOfWeek" type="String" default="day"/>
+    <aura:attribute name="year_onTheDayOfWeekOfMonth" type="String" default="January"/>
+    <!--End: Recrurence Code -->
+    
+    <lightning:layout multipleRows="true">
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Calendar Details</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:input aura:id="validateTaskField" type="text" name="subject"
+                                     label="Subject" disabled="true" value="{!v.TaskForm.Subject}"/>
+                </lightning:layoutItem>       
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <c:customLookup fieldName="customUserID" objectAPIName="{!v.objectAssignTo}" IconName="standard:user" 
+                            getAll="false" selectedRecord="{!v.selectedCalendarUserRecord}" selectedParentRecord="{!v.selectedCalendarUserParentRecord}" label="Assign To" requiredInput="true"/>
+                	<div class="AssignTo errorText">Complete this field.</div>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6" padding="around-small">
+                    <!--<lightning:input aura:id="validateTaskField" type="date" name="dueDate" label="Due Date" required="true" value="{!v.TaskForm.ActivityDate}" /> -->
+                    <lightning:input aura:id="validateTaskField" type="datetime-local" name="activityDate" disabled="{!v.disabledDateTime}" 
+                                     label="Start" required="true" value="{!v.TaskForm.ActivityDateTime__c}" />
+                    <div class="StartDateTimeBetween errorText">Please select start time between 8:00 am-6:00 pm.</div>
+                </lightning:layoutItem>
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="6" padding="around-small">
+                    <lightning:input aura:id="validateTaskField" type="datetime-local" name="activityEndDate" disabled="{!v.disabledDateTime}" 
+                                     label="End" required="true" value="{!v.TaskForm.EndDate__c}" />
+                	<div class="EndDate errorText">Must be greater than Start Date.</div>
+                    <div class="EndDateTimeBetween errorText">Please select end time between 8:00 am-6:00 pm.</div>
+                </lightning:layoutItem> 
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                	 <lightning:select aura:id="validateTaskField" required="true" name="taskPriority" label="Priority" value="{!v.TaskForm.Priority}">
+                        <option value="">--None--</option>
+                        <option value="Normal">Normal</option>
+                        <option value="High">High</option>
+                    </lightning:select>
+                </lightning:layoutItem>             
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:select aura:id="validateTaskField" required="true" name="taskType" label="Type" value="{!v.TaskForm.Type}" onchange="{!c.onChangeType}">
+                        <option value="">--None--</option>
+                        <option value="In Person">In Person</option>
+                        <option value="Email">Email</option>
+                        <option value="Phone Call">Phone Call</option>
+                        <option value="Voicemail">Voicemail</option>
+                        <option value="PTO">PTO</option>
+                    </lightning:select>
+                </lightning:layoutItem>           
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <lightning:select aura:id="validateTaskField" required="true" name="status" label="Status" value="{!v.TaskForm.Status}" onchange="{!c.onChangeStatus}">
+                        <option value="">--None--</option>
+                        <option value="Open">Open</option>
+                        <option value="Completed">Completed</option>
+                    </lightning:select>
+                </lightning:layoutItem>           
+                <!--<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                    <lightning:input type="checkbox" label="Business Related" name="Business_Related__c" 
+                                     value="{!v.TaskForm.Business_Related__c}" onchange="{!c.onBusinessRelatedClick}"/>
+                </lightning:layoutItem> -->  
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <aura:if isTrue="{!v.toggleProductDiscussed}">
+                        <lightning:select aura:id="validateTaskField" class="productDiscussed" name="productDiscussed" label="Topic of Discussion" 
+                                          required="{!v.requiredProductDiscussed}" value="{!v.TaskForm.Product_Discussed__c}" 
+                                          onchange="{!c.onChangeProductDiscussed}">
+                            <option value="">--None--</option>
+                            <aura:if isTrue="{!v.activeOthers}">
+                                <option value="Vivotif">Vivotif</option>
+                                <option value="Vaxchora">Vaxchora</option>
+                                <option value="Vivotif and Vaxchora">Vivotif and Vaxchora</option>
+                            </aura:if>
+                            <option value="Business Related">Business Related</option>
+                        </lightning:select>
+                    </aura:if>
+                </lightning:layoutItem>
+                <aura:if isTrue="{!v.activeOthers}">               
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                        <label class="slds-form-element__label">
+                            <abbr class="slds-required" title="required"><aura:if isTrue="{!v.requiredResourcesLeftOnType}">*</aura:if> </abbr>
+                        	Resources Left
+                        </label><br/>
+                        <select id="resourcesSelect" style="width:100%" multiple="multiple" 
+                                onchange="{!c.onChangeResources}"
+                                disabled="{! !v.requiredResourcesLeft}">
+                                <option value="None">None</option>                            
+                            <aura:if isTrue="{!v.isVaxchora || v.isVivotif}"> <!-- Here to add options for Vaxchora and Vivotif -->
+                                <option value="Traveler’s Companion">Traveler’s Companion</option>
+                                <option value="IDSA Guide">IDSA Guide</option>
+                                <option value="Map (In-office poster)">Map (In-office poster)</option>
+                                <option value="Unbranded Brochure">Unbranded Brochure</option>
+                                <option value="Discount Program – New Customers">Discount Program – New Customers</option>
+                                <option value="Discount Program – Existing Customers">Discount Program – Existing Customers</option>
+                                <option value="Discount Program – Pay in Full">Discount Program – Pay in Full</option>
+                                <option value="In-office Savings Cards (5x7)">In-office Savings Cards (5x7)</option> 
+                            </aura:if>
+                            <!--option value="Vaxchora PI">Vaxchora PI</option-->
+                            <aura:if isTrue="{!v.isVaxchora}"> <!-- Here to add options for Vaxchora  -->
+                                <option value="Vaxchora Flashcard">Vaxchora Flashcard</option>
+                                <option value="MMWR Booklets">MMWR Booklets</option>
+                                <option value="Ali Booklets (Feb 2017)">Ali Booklets (Feb 2017)</option>
+                                <option value="Vaxchora HCP Leave Behind">Vaxchora HCP Leave Behind</option>
+                                <option value="Vaxchora “2-8C” FAQ Flashcard">Vaxchora “2-8C” FAQ Flashcard</option>
+                                <option value="Vaxchora Reconstitution Cling">Vaxchora Reconstitution Cling</option>
+                                <option value="Vaxchora “2-8” Reminder Cling">Vaxchora “2-8” Reminder Cling</option>
+                                <option value="(Chen) White Envelope">(Chen) White Envelope</option>
+                                <option value="(Herzog) White Envelope">(Herzog) White Envelope</option>
+                                <option value="Vaxchora Patient Brochure w. QR Code">Vaxchora Patient Brochure w. QR Code</option>
+                                <option value="Vaxchora Patient Brochure">Vaxchora Patient Brochure</option>
+                                <option value="Vaxchora Patient Profiler">Vaxchora Patient Profiler</option>
+                                <option value="Vaxchora HCP Flashcard – 98 %">Vaxchora HCP Flashcard – 98 %</option>
+                                <option value="Vaxchora HCP Flashcard – 8 million">Vaxchora HCP Flashcard – 8 million</option>
+                            </aura:if>
+                            <!--option value="Vivotif PI">Vivotif PI</option-->
+                            <aura:if isTrue="{!v.isVivotif}"> <!-- Here to add options for Vivotif  -->
+                                <option value="Vivotif Patient Brochure">Vivotif Patient Brochure</option>
+                                <option value="Vivotif Pouchettes w/ PI">Vivotif Pouchettes w/ PI</option>
+                                <option value="Vivotif Dosing Admin Clingz">Vivotif Dosing Admin Clingz</option>
+                                <option value="Vivotif Leave Behind">Vivotif Leave Behind</option>
+                                <option value="Vivotif Orange Refrigeration Stickers">Vivotif Orange Refrigeration Stickers</option>
+                                <option value="Vivotif Product Monograph">Vivotif Product Monograph</option> 
+                            </aura:if>
+                        </select>
+                        <div class="ResourcesLeft errorText">Please select the picklist value.</div>
+                    </lightning:layoutItem>
+                    <aura:if isTrue="{!v.showCallStage}">
+                        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                            <lightning:select aura:id="validateTaskField" name="callStage" label="Vivotif Call Stage" 
+                                              required="{!v.requiredCallStage}" 
+                                              disabled="{! !v.requiredCallStage}"
+                                              value="{!v.TaskForm.Call_Stage__c}">
+                                <option value="">--None--</option>
+                                <option value="Disease/Product Introduction">Disease/Product Introduction</option>
+                                <option value="Meaningful Dialogue">Meaningful Dialogue</option>
+                                <option value="Objection Handling">Objection Handling</option>
+                                <option value="Commitment Gained">Commitment Gained</option>
+                            </lightning:select>
+                        </lightning:layoutItem> 
+                        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                            <lightning:select aura:id="validateTaskField" name="vaxchoraCallStage" label="Vaxchora Call Stage" 
+                                              required="{!v.requiredVaxchoraCallStage}" 
+                                              disabled="{! !v.requiredVaxchoraCallStage}"
+                                              value="{!v.TaskForm.Vaxchora_Call_Stage__c}">
+                                <option value="">--None--</option>
+                                <option value="Disease/Product Introduction">Disease/Product Introduction</option>
+                                <option value="Meaningful Dialogue">Meaningful Dialogue</option>
+                                <option value="Objection Handling">Objection Handling</option>
+                                <option value="Commitment Gained">Commitment Gained</option>
+                            </lightning:select>
+                        </lightning:layoutItem> 
+                    </aura:if>
+                </aura:if>
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Related To</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                 
+                    <c:customLookup aura:id="customAccountID"  objectAPIName="{!v.objectAccount}" IconName="standard:account" 
+                            requiredInput="{!v.requiredAccount}" selectedRecord="{!v.selectedRelatedToAccountRecord}" selectedParentRecord="{!v.selectedRelatedToAccountParentRecord}"  label="Sales Planner"/>
+                	<div class="RelatedTo errorText">Complete this field.</div>
+                </lightning:layoutItem>       
+                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                    <c:reUsableMultiSelectLookupCmp objectAPIName="{!v.objectContact}" 
+                                                    requiredInput="{!v.requiredContact}"
+                                       IconName="standard:contact"
+                                       customDataMulti="{!v.customDataCreate}"
+                                       lstSelectedRecords="{!v.selectedRelatedToContactRecords}"
+                                       label="Contact Name"/>
+                    <div class="ContactName errorText">Complete this field.</div>
+                </lightning:layoutItem>                 
+            </lightning:layout>
+        </lightning:layoutItem>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Description Information</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                    <lightning:textarea aura:id="validateTaskField" name="comments" label="Comments" required="{!v.requiredComments}" value="{!v.TaskForm.Description}" />
+                </lightning:layoutItem>
+            </lightning:layout>
+        </lightning:layoutItem>
+        <aura:if isTrue="true">
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <h3 class="slds-section-title--divider">Recurrence</h3>
+            <lightning:layout multipleRows="true">
+                <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                    <lightning:input disabled="{!v.disabledRecurrance || v.disableRecurrenceOnEdit}" type="checkbox" label="Create Recurring Series of Tasks" checked="{!v.TaskForm.IsRecurrence }" name="crRecSerTsk" onchange="{!c.isRecurrence}"/>
+                </lightning:layoutItem>
+                <aura:if isTrue="{!v.TaskForm.IsRecurrence}">
+                    <lightning:layoutItem size="12" smallDeviceSize="2" mediumDeviceSize="2" largeDeviceSize="2" padding="around-small">
+                        <label class="slds-form-element__label">Frequency </label>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="10" mediumDeviceSize="10" largeDeviceSize="10" padding="around-small">
+                        <lightning:buttonGroup>
+                            <lightning:button variant="{!v.DailyVariant}" label="Daily" title="Daily" onclick="{! c.frequencyButtonClick }" />
+                            <aura:if isTrue="true">
+                            	<lightning:button variant="{!v.WeeklyVariant}" label="Weekly" title="Weekly" onclick="{! c.frequencyButtonClick }" />
+                            	<lightning:button variant="{!v.MonthlyVariant}" label="Monthly" title="Monthly" onclick="{! c.frequencyButtonClick }" />
+                            </aura:if>    
+                        </lightning:buttonGroup>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="2" mediumDeviceSize="2" largeDeviceSize="2" padding="around-small">
+                        
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-size_12-of-12">
+                                <aura:if isTrue="{!v.dOptions}">
+                                    <div aura:id="dDiv">
+                                        <aura:if isTrue="false">
+                                        <lightning:input type="radio" checked="{!v.eWeekDay}" label="Every weekday" name="dfreqOptions" onclick="{!c.handleDailyFrequencyRadioClick}"/>
+                                        </aura:if>   
+                                        <div class="slds-grid slds-wrap">
+                                            <div class="slds-size_1-of-2">
+                                                <lightning:input type="radio" checked="{!v.eNumOfDays}" label="Every" name="dfreqOptions" onclick="{!c.handleDailyFrequencyRadioClick}"/>
+                                            	<div class="slds-grid slds-wrap paddingLeft25">
+                                            		<div class="slds-size_1-of-2">
+                                                        <lightning:select name="day_onDayVal" class="hideLabel" value="{!v.dNumberOfDays}" required="false">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9</option>
+                                                            <option value="10">10</option>
+                                                            <option value="11">11</option>
+                                                            <option value="12">12</option>
+                                                            <option value="13">13</option>
+                                                            <option value="14">14</option>
+                                                            <option value="15">15</option>
+                                                            <option value="16">16</option>
+                                                            <option value="17">17</option>
+                                                            <option value="18">18</option>
+                                                            <option value="19">19</option>
+                                                            <option value="20">20</option>
+                                                            <option value="21">21</option>
+                                                            <option value="22">22</option>
+                                                            <option value="23">23</option>
+                                                            <option value="24">24</option>
+                                                            <option value="25">25</option>
+                                                            <option value="26">26</option>
+                                                            <option value="27">27</option>
+                                                            <option value="28">28</option>
+                                                            <option value="29">29</option>
+                                                            <option value="30">30</option>
+                                                            <option value="31">31</option>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <div class="slds-size_1-of-2"><label class="slds-form-element__label">&nbsp;&nbsp;day(s)</label></div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </aura:if>
+                                <aura:if isTrue="{!v.wOptions}">
+                                    <div aura:id="wDiv">
+                                        <lightning:layout multipleRows="true">
+        									<lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="3" padding="around-small">
+                                            	<lightning:select name="week_onDayVal" label="Recurs every" value="{!v.reNumberOfDays}" required="false">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                    <option value="13">13</option>
+                                                    <option value="14">14</option>
+                                                    <option value="15">15</option>
+                                                    <option value="16">16</option>
+                                                    <option value="17">17</option>
+                                                    <option value="18">18</option>
+                                                    <option value="19">19</option>
+                                                    <option value="20">20</option>
+                                                    <option value="21">21</option>
+                                                    <option value="22">22</option>
+                                                    <option value="23">23</option>
+                                                    <option value="24">24</option>
+                                                    <option value="25">25</option>
+                                                    <option value="26">26</option>
+                                                    <option value="27">27</option>
+                                                    <option value="28">28</option>
+                                                    <option value="29">29</option>
+                                                    <option value="30">30</option>
+                                                    <option value="31">31</option>
+                                                </lightning:select>
+                                            </lightning:layoutItem>
+                                            <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="4" padding="around-small">
+                                                <br/><br/><label class="slds-form-element__label">&nbsp;&nbsp;week(s) on</label>
+                                            </lightning:layoutItem>
+        									<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                                <label class="slds-form-element__label">Repeat on</label>
+                                            </lightning:layoutItem>
+        									<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                            	<div class="slds-button-group" role="group">
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Sun" checked="{!v.wSun}"  name="wSun" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Mon" checked="{!v.wMon}" name="wMon" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Tue" checked="{!v.wTue}" name="wTue" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Wed" checked="{!v.wWed}" name="wWed" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Thu" checked="{!v.wThu}" name="wThu" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Fri" checked="{!v.wFri}" name="wFri" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                            		<div class="slds-size_1-of-7 width40">
+                                                        <lightning:input type="checkbox" label="Sat" checked="{!v.wSat}" name="wSat" onchange="{!c.weekDayChange}"/>
+                                                    </div>
+                                                </div>
+                                            </lightning:layoutItem>
+                                        </lightning:layout>
+                                    </div>
+                                </aura:if>
+                                <aura:if isTrue="{!v.mOptions}">
+                                    <lightning:layout multipleRows="true">
+        								<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                        	<lightning:input type="radio" checked="{!v.month_onDay}" label="On day" name="monthRadioOptions" onclick="{!c.handleMonthChoices}"/>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                        	<div class="slds-button-group" role="group">
+                                                <div class="slds-size_2-of-5 paddingLeft25 top-10">
+                                                    <lightning:select name="month_onDayVal" class="hideLabel" variant="label-hidden" value="{!v.month_onDayVal}" required="false">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+                                                    </lightning:select>
+                                                </div>
+                                                <div class="slds-size_2-of-5 paddingLeft25 top-30">
+                                                    <lightning:select name="month_ofEvery" label="Every" value="{!v.month_ofEvery}" required="false">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                    </lightning:select>
+                                                </div>
+                                                <div class="slds-size_1-of-5">
+                                                    <label class="slds-form-element__label">&nbsp;&nbsp;month(s)</label>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    	<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                        	<lightning:input type="radio" checked="{!v.month_onthe}" label="On the" name="monthRadioOptions" onclick="{!c.handleMonthChoices}"/>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                        	<div class="slds-button-group" role="group" style="width:80%!importnat" >
+                                                <div class="slds-size_1-of-2 paddingLeft25 top-10">
+                                                    <lightning:select name="month_ontheDayof" value="{!v.month_ontheDayof}" class="hideLabel"  required="false">
+                                                        <option value="First">1st</option>
+                                                        <option value="Second">2nd</option>
+                                                        <option value="Third">3rd</option>
+                                                        <option value="Fourth">4th</option>
+                                                        <option value="Last">last</option>
+                                                    </lightning:select>
+                                                </div>
+                                                <div class="slds-size_1-of-2 paddingLeft15 top-30">
+                                                    <lightning:select name="month_ontheDay" label=" Day" value="{!v.month_ontheDay}" required="false">
+                                                        <option value="Day">Day</option>
+                                                        <option value="Sun">Sunday</option>
+                                                        <option value="Mon">Monday</option>
+                                                        <option value="Tue">Tuesday</option>
+                                                        <option value="Wed">Wednesday</option>
+                                                        <option value="Thu">Thursday</option>
+                                                        <option value="Fri">Friday</option>
+                                                        <option value="Sat">Saturday</option>
+                                                    </lightning:select>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                                        	<div class="slds-button-group" role="group">
+                                                <div class="slds-size_1-of-2 paddingLeft25 top-10">
+                                                    <lightning:select name="month_ontheEvery" label="Every" value="{!v.month_ontheEvery}" required="false">
+                                                                <option value="1">1</option>
+                                                                <option value="2">2</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                                <option value="6">6</option>
+                                                                <option value="7">7</option>
+                                                                <option value="8">8</option>
+                                                                <option value="9">9</option>
+                                                                <option value="10">10</option>
+                                                                <option value="11">11</option>
+                                                                <option value="12">12</option>
+                                                            </lightning:select>
+                                                </div>
+                                                <div class="slds-size_1-of-2" style="padding-top: 26px;">
+                                                    <label class="slds-form-element__label">&nbsp;&nbsp;month(s)</label>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </lightning:layout>
+                                </aura:if>
+                                <aura:if isTrue="{!v.yOptions}">
+                                    <div aura:id="yDiv">
+                                        <div>
+                                            <div class="slds-button-group" role="group">
+                                                <div>
+                                                    <lightning:input type="radio" checked="{!v.year_onEvery}" label="On every" name="yearlyRadioOptions" onclick="{!c.handleYearlyChoices}" />
+                                                </div>
+                                                <div style="position:relative;top:-25px;">
+                                                    <lightning:select name="year_onEveryMonth" value="{!v.year_onEveryMonth}" required="false">
+                                                        <option value="January">January</option>
+                                                        <option value="February">February</option>
+                                                        <option value="March">March</option>
+                                                        <option value="April">April</option>
+                                                        <option value="May">May</option>
+                                                        <option value="June">June</option>
+                                                        <option value="July">July</option>
+                                                        <option value="August">August</option>
+                                                        <option value="September">September</option>
+                                                        <option value="October">October</option>
+                                                        <option value="November">November</option>
+                                                        <option value="December">December</option>
+                                                    </lightning:select>
+                                                </div>
+                                                <div style="position:relative;top:-25px;">
+                                                    <lightning:select name="year_onEveryMonthOf" value="{!v.year_onEveryMonthOf}" required="false">
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                        <option value="11">11</option>
+                                                        <option value="12">12</option>
+                                                        <option value="13">13</option>
+                                                        <option value="14">14</option>
+                                                        <option value="15">15</option>
+                                                        <option value="16">16</option>
+                                                        <option value="17">17</option>
+                                                        <option value="18">18</option>
+                                                        <option value="19">19</option>
+                                                        <option value="20">20</option>
+                                                        <option value="21">21</option>
+                                                        <option value="22">22</option>
+                                                        <option value="23">23</option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                        <option value="31">31</option>
+                                                    </lightning:select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="slds-button-group" role="group">
+                                            <div>
+                                                <lightning:input type="radio" checked="{!v.year_onThe}" label="On the" name="yearlyRadioOptions" onclick="{!c.handleYearlyChoices}"/>
+                                            </div>
+                                            <div style="position:relative;top:-25px;">
+                                                <lightning:select name="year_onTheDayOf" value="{!v.year_onTheDayOf}" required="false">
+                                                    <option value="1">1st</option>
+                                                    <option value="2">2nd</option>
+                                                    <option value="3">3rd</option>
+                                                    <option value="4">4th</option>
+                                                    <option value="5">last</option>
+                                                </lightning:select>
+                                            </div>
+                                            <div style="position:relative;top:-25px;">
+                                                <lightning:select name="year_onTheDayOfWeek" value="{!v.year_onTheDayOfWeek}" required="false">
+                                                    <option value="day">day</option>
+                                                    <option value="Sunday">Sunday</option>
+                                                    <option value="Monday">Monday</option>
+                                                    <option value="Tuesday">Tuesday</option>
+                                                    <option value="Wednesday">Wednesday</option>
+                                                    <option value="Thursday">Thursday</option>
+                                                    <option value="Friday">Friday</option>
+                                                    <option value="Saturday">Saturday</option>
+                                                </lightning:select>
+                                            </div>
+                                            <div>
+                                                of
+                                            </div>
+                                            <div style="position:relative;top:-25px;">
+                                                <lightning:select name="year_onTheDayOfWeekOfMonth" value="{!v.year_onTheDayOfWeekOfMonth}" required="false">
+                                                    <option value="January">January</option>
+                                                    <option value="February">February</option>
+                                                    <option value="March">March</option>
+                                                    <option value="April">April</option>
+                                                    <option value="May">May</option>
+                                                    <option value="June">June</option>
+                                                    <option value="July">July</option>
+                                                    <option value="August">August</option>
+                                                    <option value="September">September</option>
+                                                    <option value="October">October</option>
+                                                    <option value="November">November</option>
+                                                    <option value="December">December</option>
+                                                </lightning:select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aura:if>
+                            </div>
+                        </div>
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                        <lightning:input type="date" required="true" label="Recurrence Start" aura:id="validateTaskField" name="recStartDt" value="{!v.TaskForm.RecurrenceStartDateOnly}" />
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="6" largeDeviceSize="6" padding="around-small">
+                        <lightning:input type="date" required="true" label="Recurrence End" aura:id="validateTaskField" name="recEndDt" value="{!v.TaskForm.RecurrenceEndDateOnly}"/>
+                    </lightning:layoutItem>
+                </aura:if>
+            </lightning:layout>
+        </lightning:layoutItem>
+        </aura:if>
+        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+            <footer class="slds-task__footer">
+                <lightning:button variant="neutral" 
+                                  label="Cancel"
+                                  title="Cancel"
+                                  onclick="{! c.closeModel }"/>
+                <aura:if isTrue="{!v.activeDelete}">
+                	<lightning:button variant="neutral" 
+                                  label="Delete"
+                                  title="Delete"
+                                  onclick="{! c.deleteClick }"/>
+                
+                </aura:if>
+                <lightning:button variant="brand" 
+                                  label="Save"
+                                  title="Save"
+                                  onclick="{! c.saveClick }"/>
+            </footer>
+        </lightning:layoutItem>
+    </lightning:layout>    
+</aura:component>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PY_YTD_Vaxchora_doses__c</fullName>
+    <externalId>false</externalId>
+    <formula>Account_Sales_Planner__r.PY_YTD_Vaxchora_doses__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>2018 year-to-date Vaxchora doses</inlineHelpText>
+    <label>PY_YTD_ Vaxchora doses</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

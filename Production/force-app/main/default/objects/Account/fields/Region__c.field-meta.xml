@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <externalId>false</externalId>
+    <label>Region</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Midwest</fullName>
+                <default>false</default>
+                <label>Midwest</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>South Central</fullName>
+                <default>false</default>
+                <label>South Central</label>
+            </value>
+            <value>
+                <fullName>New England</fullName>
+                <default>false</default>
+                <label>New England</label>
+            </value>
+            <value>
+                <fullName>Mid Atlantic</fullName>
+                <default>false</default>
+                <label>Mid Atlantic</label>
+            </value>
+            <value>
+                <fullName>Empire</fullName>
+                <default>false</default>
+                <label>Empire</label>
+            </value>
+            <value>
+                <fullName>Pacific NW</fullName>
+                <default>false</default>
+                <label>Pacific Northwest</label>
+            </value>
+            <value>
+                <fullName>River Valley</fullName>
+                <default>false</default>
+                <label>River Valley</label>
+            </value>
+            <value>
+                <fullName>Liberty Bell</fullName>
+                <default>false</default>
+                <label>Liberty Bell</label>
+            </value>
+            <value>
+                <fullName>South West</fullName>
+                <default>false</default>
+                <label>South West</label>
+            </value>
+            <value>
+                <fullName>South East</fullName>
+                <default>false</default>
+                <label>South East</label>
+            </value>
+            <value>
+                <fullName>White Space</fullName>
+                <default>false</default>
+                <label>White Space</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

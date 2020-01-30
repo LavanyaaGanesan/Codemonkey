@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OldShipTo__c</fullName>
+    <description>Whenever shipto is changed in Account, the value should be captured so that it can be used in Email Template.</description>
+    <externalId>false</externalId>
+    <label>OldShipTo</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

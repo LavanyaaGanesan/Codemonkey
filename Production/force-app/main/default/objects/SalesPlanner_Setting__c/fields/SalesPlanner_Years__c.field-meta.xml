@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SalesPlanner_Years__c</fullName>
+    <description>It is used for SalesPlanner Year with &quot;,&quot; seperated for multiple year e.g 2019,2020</description>
+    <externalId>false</externalId>
+    <inlineHelpText>e.g 2019,2020 for multiple years or 2019 for single year</inlineHelpText>
+    <label>SalesPlanner Years</label>
+    <length>50</length>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

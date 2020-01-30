@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RAMs_Accounts</fullName>
+    <columns>DDD_Outlet_ID__c</columns>
+    <columns>CORE.USERS.FIRST_NAME</columns>
+    <columns>CORE.USERS.LAST_NAME</columns>
+    <columns>Yellow_fever_vaccination_clinics__c</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>ACCOUNT.ADDRESS1_STREET</columns>
+    <columns>ACCOUNT.ADDRESS1_CITY</columns>
+    <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+    <columns>ACCOUNT.ADDRESS1_STATE</columns>
+    <columns>ACCOUNT.LAST_ACTIVITY</columns>
+    <columns>X2018_YTD_Typhoid_Doses__c</columns>
+    <columns>X2018_YTD_Vivotif_doses__c</columns>
+    <columns>X2018_YTD_Vaxchora_doses__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Owner_Role__c</field>
+        <operation>equals</operation>
+        <value>RSM</value>
+    </filters>
+    <filters>
+        <field>Paxvax_Classification__c</field>
+        <operation>notEqual</operation>
+        <value>FSS</value>
+    </filters>
+    <filters>
+        <field>DDD_Outlet_ID__c</field>
+        <operation>greaterThan</operation>
+        <value>00000000</value>
+    </filters>
+    <label>RAMs_Accounts</label>
+</ListView>

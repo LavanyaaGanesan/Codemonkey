@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Growth_YOY_YTD__c</fullName>
+    <externalId>false</externalId>
+    <formula>(((Account_Sales_Planner__r.X2019_Vaxchora_doses_YTD__c -   Account_Sales_Planner__r.PY_YTD_Vaxchora_doses__c )/ Account_Sales_Planner__r.PY_YTD_Vaxchora_doses__c ))</formula>
+    <label>YTD YOY Vaxchora Growth(%)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

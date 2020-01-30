@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Recommenders__c</fullName>
+    <externalId>false</externalId>
+    <label>Secondary Recommenders</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CDC</fullName>
+                <default>false</default>
+                <label>CDC</label>
+            </value>
+            <value>
+                <fullName>Travax</fullName>
+                <default>false</default>
+                <label>Travax</label>
+            </value>
+            <value>
+                <fullName>TravelCare</fullName>
+                <default>false</default>
+                <label>TravelCare</label>
+            </value>
+            <value>
+                <fullName>Tropimed</fullName>
+                <default>false</default>
+                <label>Tropimed</label>
+            </value>
+            <value>
+                <fullName>Safegard</fullName>
+                <default>false</default>
+                <label>Safegard</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

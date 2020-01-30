@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CaseStatusProfileRestrictions</fullName>
+    <active>true</active>
+    <description>Sys Admin profile- access to change the status</description>
+    <errorConditionFormula>And(ISCHANGED(Status),$Profile.Id&lt;&gt;&quot;00e610000015fhh&quot;)</errorConditionFormula>
+    <errorDisplayField>Status</errorDisplayField>
+    <errorMessage>You don&#39;t have any access to change the status of the case.</errorMessage>
+</ValidationRule>

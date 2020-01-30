@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HCP_Flashcard_98__c</fullName>
+    <description>(PAX-US-0218)</description>
+    <externalId>false</externalId>
+    <inlineHelpText>(PAX-US-0218)</inlineHelpText>
+    <label>Vaxchora HCP Flashcard – 98 %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

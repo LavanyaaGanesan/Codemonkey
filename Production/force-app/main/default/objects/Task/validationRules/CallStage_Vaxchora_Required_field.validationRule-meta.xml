@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CallStage_Vaxchora_Required_field</fullName>
+    <active>true</active>
+    <description>The Vaxchora call stage becomes a required field when Vaxchora is selected from the picklist.</description>
+    <errorConditionFormula>And( 
+ISPICKVAL(Status, &quot;Completed&quot;), 
+ISPICKVAL(Product_Discussed__c ,&quot;Vaxchora&quot;),ISBLANK(TEXT( Vaxchora_Call_Stage__c)))</errorConditionFormula>
+    <errorDisplayField>Vaxchora_Call_Stage__c</errorDisplayField>
+    <errorMessage>Select a picklist value from the &quot;Vaxchora Call Stage&quot; field to save the record.</errorMessage>
+</ValidationRule>

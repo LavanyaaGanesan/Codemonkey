@@ -1,0 +1,9 @@
+.THIS .inputSize {
+    width:100%; 
+}
+.THIS .show{
+    visibility:visible;
+}
+.THIS .hide{
+    visibility:hidden;
+}

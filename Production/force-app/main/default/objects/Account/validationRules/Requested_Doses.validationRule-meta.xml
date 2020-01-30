@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_Doses</fullName>
+    <active>true</active>
+    <description>This field is required if the Opt-in Checkbox is checked ( Vaxchora Shocking Stocking Campaign program-2017)</description>
+    <errorConditionFormula>And( Opt_In__c =True,ISBLANK( Requested_Doses__c))</errorConditionFormula>
+    <errorDisplayField>Requested_Doses__c</errorDisplayField>
+    <errorMessage>Enter requested Vaxchora doses.</errorMessage>
+</ValidationRule>

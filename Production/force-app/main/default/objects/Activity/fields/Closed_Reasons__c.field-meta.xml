@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Reasons__c</fullName>
+    <defaultValue>&quot;Blank&quot;</defaultValue>
+    <description>This field activates only when the Closed-Not Viable is selected.</description>
+    <externalId>false</externalId>
+    <label>Closed Reasons</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Not a travel vaccination outlet</fullName>
+                <default>false</default>
+                <label>Not a travel vaccination outlet</label>
+            </value>
+            <value>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+                <label>Pricing</label>
+            </value>
+            <value>
+                <fullName>Storage</fullName>
+                <default>false</default>
+                <label>Storage</label>
+            </value>
+            <value>
+                <fullName>Closed Health facility</fullName>
+                <default>false</default>
+                <label>Closed Health facility</label>
+            </value>
+            <value>
+                <fullName>Prescriber</fullName>
+                <default>false</default>
+                <label>Prescriber</label>
+            </value>
+            <value>
+                <fullName>Pediatric facility</fullName>
+                <default>false</default>
+                <label>Pediatric facility</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

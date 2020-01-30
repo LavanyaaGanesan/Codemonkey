@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Stage__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Dual Product Loyal:Reorders of Vaxchora and ^25% Vivotif Mkt Share	 
+Vaxchora Supporter:Re-ordering Vaxchora; little or no Vivotif usage.  Vivotif Supporter:^25% Vivotif Market Share, and no Vaxchora Usage. Travel Vaccinator	Vaccinate travelers,</inlineHelpText>
+    <label>Account Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dual Product Loyal</fullName>
+                <default>false</default>
+                <label>Dual Product Loyal</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Supporter</fullName>
+                <default>false</default>
+                <label>Vaxchora Supporter</label>
+            </value>
+            <value>
+                <fullName>Vivotif Supporter</fullName>
+                <default>false</default>
+                <label>Vivotif Supporter</label>
+            </value>
+            <value>
+                <fullName>Travel Vaccinator</fullName>
+                <default>false</default>
+                <label>Travel Vaccinator</label>
+            </value>
+            <value>
+                <fullName>PaxVax Naïve</fullName>
+                <default>false</default>
+                <label>PaxVax Naïve</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,8 @@
+<design:component>
+    
+    <design:attribute name = "PName" label="Product Name" description="Name of the person you want to greet" />
+    <design:attribute name = "SYear" label="Year" description="Year of the products" />
+    <design:attribute name = "color" label ="Color" description="purple"/>
+    <design:attribute name = "Name1" label ="Product" description="Vachora Vifotif"/>
+      
+</design:component>

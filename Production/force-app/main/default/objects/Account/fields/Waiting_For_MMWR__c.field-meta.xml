@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Waiting_For_MMWR__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>It is for the customers who are waiting for MMWR before making Vaxchora purchase.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check the box if the customer is waiting for MMWR for Vaxchora purchase.</inlineHelpText>
+    <label>Waiting for MMWR</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

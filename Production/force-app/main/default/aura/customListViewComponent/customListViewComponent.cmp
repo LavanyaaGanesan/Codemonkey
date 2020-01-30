@@ -1,0 +1,42 @@
+<aura:component controller="customTaskController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+  
+    <aura:attribute name="objName" type="String" />    
+    <aura:attribute name="viewName" type="String" />
+    
+    <aura:attribute name="customListViewData" type="object"/>
+    <aura:attribute name="customListViewDataParent" type="object"/>       
+    <aura:attribute name="dataLoaded" type="Boolean" default="false"/>    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />  
+  	<aura:handler name="change" value="{!v.body}" action="{!c.bodyDataChange}" />
+    
+    
+    <div class="slds slds-box slds-m-around--small">
+        <div class="slds-box slds-hide">
+            <lightning:input aura:id="inputName" type="text" label="Enter Object Name:" required="true" value="Sales_Planner__c" />
+        </div>
+        <div class="slds-hide" aura:id="div1">
+            <div class="slds-grid slds-wrap customHeader">
+                <lightning:layout horizontalAlign="center" class="fullPage">
+                    <!--<lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="4" padding="around-small">
+                        <strong>List Views</strong>   
+                    </lightning:layoutItem>
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="8" padding="around-small">
+                    	<ui:inputSelect  aura:id="selectvalues" class="slds-select"  change="{!c.onListViewChange}"/>    
+                    </lightning:layoutItem> -->
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12" padding="around-small">
+                        <strong>List Views</strong> 
+                        <ui:inputSelect  aura:id="selectvalues" class="slds-select"  change="{!c.onListViewChange}"/>    
+                    </lightning:layoutItem>
+                </lightning:layout><br/>
+            </div>
+            <div class="slds-theme_default">
+                <aura:If isTrue="{!v.viewName != null}">    
+                    <div aura:id="external-tasks" id="{!globalId + 'external-tasks'}" class="external-tasks">
+                    	{!v.body}
+                    </div>
+                </aura:If> 
+            </div>
+        </div>
+    </div>
+</aura:component>

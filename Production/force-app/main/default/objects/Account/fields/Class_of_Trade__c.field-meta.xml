@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_of_Trade__c</fullName>
+    <externalId>false</externalId>
+    <label>Class of Trade</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>College/University</fullName>
+                <default>false</default>
+                <label>College/University</label>
+            </value>
+            <value>
+                <fullName>Employer</fullName>
+                <default>false</default>
+                <label>Employer</label>
+            </value>
+            <value>
+                <fullName>FSS</fullName>
+                <default>false</default>
+                <label>FSS</label>
+            </value>
+            <value>
+                <fullName>Health Department</fullName>
+                <default>false</default>
+                <label>Health Department</label>
+            </value>
+            <value>
+                <fullName>IHN</fullName>
+                <default>false</default>
+                <label>IHN</label>
+            </value>
+            <value>
+                <fullName>Infectious Disease</fullName>
+                <default>false</default>
+                <label>Infectious Disease</label>
+            </value>
+            <value>
+                <fullName>Kaiser</fullName>
+                <default>false</default>
+                <label>Kaiser</label>
+            </value>
+            <value>
+                <fullName>Pediatrics</fullName>
+                <default>false</default>
+                <label>Pediatrics</label>
+            </value>
+            <value>
+                <fullName>PCP</fullName>
+                <default>false</default>
+                <label>PCP</label>
+            </value>
+            <value>
+                <fullName>PPH Franchise</fullName>
+                <default>false</default>
+                <label>PPH Franchise</label>
+            </value>
+            <value>
+                <fullName>PPH Corporate</fullName>
+                <default>false</default>
+                <label>PPH Corporate</label>
+            </value>
+            <value>
+                <fullName>Travel</fullName>
+                <default>false</default>
+                <label>Travel</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

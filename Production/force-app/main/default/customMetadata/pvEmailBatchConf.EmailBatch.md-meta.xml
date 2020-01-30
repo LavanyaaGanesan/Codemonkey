@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>EmailBatch</label>
+    <protected>false</protected>
+    <values>
+        <field>BccEmailID__c</field>
+        <value xsi:type="xsd:string">ganesanl@ebsi.com</value>
+    </values>
+    <values>
+        <field>CsvHeader__c</field>
+        <value xsi:type="xsd:string">ID, Name, DDD Outlet_ID,Account Owner,Owner_Role,Outlet Name,Account Name,Parent Account,Address,City,State,Zip,Last Inperson Activity Date,Last Non-Personal Activity Date,Last Non-personal activity (email;phone call;voicemail),Days since Last in-person visit</value>
+    </values>
+    <values>
+        <field>EmailFormatMetadataQuery__c</field>
+        <value xsi:type="xsd:string">SELECT subject__c, body__c,Label FROM pvSalesPlannerEmailFormats__mdt</value>
+    </values>
+    <values>
+        <field>EventQuery__c</field>
+        <value xsi:type="xsd:string">SELECT WhatId, ActivityDate, type, DaysSinceLastActivityDate__c FROM Event where WhatId!=&#39;&#39; and What.Type=&#39;Sales_Planner__c&#39; and (ActivityDate=THIS_YEAR or ActivityDate=LAST_N_DAYS:180) order by WhatId asc, ActivityDate desc</value>
+    </values>
+    <values>
+        <field>ExcludeUserID__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>ManagersEmailIdInCC__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>SPTotalCount__c</field>
+        <value xsi:type="xsd:string">SELECT count() FROM Sales_Planner__c where Account_Owner_ID__c in (##USERIDS##) and Account_Owner_Manager_ID__c!=null</value>
+    </values>
+    <values>
+        <field>SalesPlannerQuery__c</field>
+        <value xsi:type="xsd:string">SELECT Id, Name, DDD_Outlet_ID__c, Outlet_Name__c, Owner_Role__c, Account_Name__c, Parent_Account__c, Street2__c, City2__c, State_Province2__c, Zip_Postal_Code2__c, Account_Owner_ID__c, Account_Owner_Manager_ID__c,Untouched_Days__c FROM Sales_Planner__c where Account_Owner_ID__c in (##USERIDS##) and Account_Owner_Manager_ID__c!=null order by Account_Owner_Manager_ID__c asc, Account_Owner_ID__c asc, Untouched_Days__c asc</value>
+    </values>
+    <values>
+        <field>TaskQuery__c</field>
+        <value xsi:type="xsd:string">SELECT WhatId, ActivityDate, type, DaysSinceLastActivityDate__c FROM Task where WhatId!=&#39;&#39; and What.Type=&#39;Sales_Planner__c&#39; and (ActivityDate=THIS_YEAR or ActivityDate=LAST_N_DAYS:180) order by WhatId asc, ActivityDate desc</value>
+    </values>
+    <values>
+        <field>TestingEmail__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>TypePicklistValues__c</field>
+        <value xsi:type="xsd:string">In_Person,Phone_Call,Email,Voicemail</value>
+    </values>
+    <values>
+        <field>UserQuery__c</field>
+        <value xsi:type="xsd:string">Select Id, Name, email, Manager.Id, Manager.Name,Manager.email from User where profileid =&#39;00e61000000cYcvAAE&#39; and IsActive=true order by Manager.ID asc</value>
+    </values>
+</CustomMetadata>

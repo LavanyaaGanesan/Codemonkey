@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>This custom setting is using in two triggers CreateEventWhenTaskCreated and updateActivityInTask.
+Deactivating this setting will affect task creation on holidays in PTOs and in out of business hours and recording the activity date will also effect.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Trg_Task_Setting</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resources_Left__c</fullName>
+    <externalId>false</externalId>
+    <label>Resources Left</label>
+    <required>false</required>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Product_Discussed__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Vaxchora PI</fullName>
+                <default>false</default>
+                <label>Vaxchora PI</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Flashcard</fullName>
+                <default>false</default>
+                <label>Vaxchora Flashcard</label>
+            </value>
+            <value>
+                <fullName>MMWR Booklets</fullName>
+                <default>false</default>
+                <label>MMWR Booklets</label>
+            </value>
+            <value>
+                <fullName>Ali Booklets (Feb 2017)</fullName>
+                <default>false</default>
+                <label>Ali Booklets (Feb 2017)</label>
+            </value>
+            <value>
+                <fullName>Vaxchora HCP Leave Behind</fullName>
+                <default>false</default>
+                <label>Vaxchora HCP Leave Behind</label>
+            </value>
+            <value>
+                <fullName>(Chen) White Envelope</fullName>
+                <default>false</default>
+                <label>(Chen) White Envelope</label>
+            </value>
+            <value>
+                <fullName>(Herzog) White Envelope</fullName>
+                <default>false</default>
+                <label>(Herzog) White Envelope</label>
+            </value>
+            <value>
+                <fullName>Vivotif PI</fullName>
+                <default>false</default>
+                <label>Vivotif PI</label>
+            </value>
+            <value>
+                <fullName>Vivotif Patient Brochure</fullName>
+                <default>false</default>
+                <label>Vivotif Patient Brochure</label>
+            </value>
+            <value>
+                <fullName>Vivotif Pouchettes w/ PI</fullName>
+                <default>false</default>
+                <label>Vivotif Pouchettes w/ PI</label>
+            </value>
+            <value>
+                <fullName>Vivotif Dosing Admin Clingz</fullName>
+                <default>false</default>
+                <label>Vivotif Dosing Admin Clingz</label>
+            </value>
+            <value>
+                <fullName>Vivotif Leave Behind</fullName>
+                <default>false</default>
+                <label>Vivotif Leave Behind</label>
+            </value>
+            <value>
+                <fullName>Vivotif Orange Refrigeration Stickers</fullName>
+                <default>false</default>
+                <label>Vivotif Orange Refrigeration Stickers</label>
+            </value>
+            <value>
+                <fullName>Vivotif Product Monograph</fullName>
+                <default>false</default>
+                <label>Vivotif Product Monograph</label>
+            </value>
+            <value>
+                <fullName>Traveler’s Companion</fullName>
+                <default>false</default>
+                <label>Traveler’s Companion</label>
+            </value>
+            <value>
+                <fullName>IDSA Guide</fullName>
+                <default>false</default>
+                <label>IDSA Guide</label>
+            </value>
+            <value>
+                <fullName>Map (In-office poster)</fullName>
+                <default>false</default>
+                <label>Map (In-office poster)</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Patient Brochure w. QR Code</fullName>
+                <default>false</default>
+                <label>Vaxchora Patient Brochure w. QR Code</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Patient Brochure</fullName>
+                <default>false</default>
+                <label>Vaxchora Patient Brochure</label>
+            </value>
+            <value>
+                <fullName>Unbranded Brochure</fullName>
+                <default>false</default>
+                <label>Unbranded Brochure</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Patient Profiler</fullName>
+                <default>false</default>
+                <label>Vaxchora Patient Profiler</label>
+            </value>
+            <value>
+                <fullName>Discount Program – New Customers</fullName>
+                <default>false</default>
+                <label>Discount Program – New Customers</label>
+            </value>
+            <value>
+                <fullName>Discount Program – Existing Customers</fullName>
+                <default>false</default>
+                <label>Discount Program – Existing Customers</label>
+            </value>
+            <value>
+                <fullName>Discount Program – Pay in Full</fullName>
+                <default>false</default>
+                <label>Discount Program – Pay in Full</label>
+            </value>
+            <value>
+                <fullName>Vaxchora HCP Flashcard – 98 %</fullName>
+                <default>false</default>
+                <label>Vaxchora HCP Flashcard – 98 %</label>
+            </value>
+            <value>
+                <fullName>Vaxchora HCP Flashcard – 8 million</fullName>
+                <default>false</default>
+                <label>Vaxchora HCP Flashcard – 8 million</label>
+            </value>
+            <value>
+                <fullName>In-office Savings Cards (5x7)</fullName>
+                <default>false</default>
+                <label>In-office Savings Cards (5x7)</label>
+            </value>
+            <value>
+                <fullName>Vaxchora “2-8C” FAQ Flashcard</fullName>
+                <default>false</default>
+                <label>Vaxchora “2-8C” FAQ Flashcard</label>
+            </value>
+            <value>
+                <fullName>Vaxchora “2-8” Reminder Cling</fullName>
+                <default>false</default>
+                <label>Vaxchora “2-8” Reminder Cling</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Reconstitution Cling</fullName>
+                <default>false</default>
+                <label>Vaxchora Reconstitution Cling</label>
+            </value>
+            <value>
+                <fullName>Admin Clingz</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Admin Clingz</label>
+            </value>
+            <value>
+                <fullName>Ali</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ali</label>
+            </value>
+            <value>
+                <fullName>Cholera Map</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cholera Map</label>
+            </value>
+            <value>
+                <fullName>MMWR</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>MMWR</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Getting Ready Tip Sheet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vaxchora Getting Ready Tip Sheet</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Product Monograph</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vaxchora Product Monograph</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Reconstitution Clingz</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vaxchora Reconstitution Clingz</label>
+            </value>
+            <value>
+                <fullName>Vaxchora Scheduler Clingz</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Vaxchora Scheduler Clingz</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>None</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora Flashcard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>MMWR Booklets</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Ali Booklets (Feb 2017)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora HCP Leave Behind</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>(Chen) White Envelope</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>(Herzog) White Envelope</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Traveler’s Companion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>IDSA Guide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Map (In-office poster)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora Patient Brochure w. QR Code</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora Patient Brochure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Unbranded Brochure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora Patient Profiler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Discount Program – New Customers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Discount Program – Existing Customers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Discount Program – Pay in Full</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora HCP Flashcard – 98 %</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora HCP Flashcard – 8 million</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>In-office Savings Cards (5x7)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora “2-8C” FAQ Flashcard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora “2-8” Reminder Cling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Vaxchora Reconstitution Cling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Patient Brochure</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Pouchettes w/ PI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Dosing Admin Clingz</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Leave Behind</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Orange Refrigeration Stickers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Vivotif Product Monograph</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

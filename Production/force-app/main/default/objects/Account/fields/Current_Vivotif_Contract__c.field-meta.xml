@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Vivotif_Contract__c</fullName>
+    <externalId>false</externalId>
+    <label>Current Vivotif Contract</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MHA</fullName>
+                <default>false</default>
+                <label>MHA</label>
+            </value>
+            <value>
+                <fullName>Premier/INNOVATIX</fullName>
+                <default>false</default>
+                <label>Premier/INNOVATIX</label>
+            </value>
+            <value>
+                <fullName>MMS/MMCAP</fullName>
+                <default>false</default>
+                <label>MMS/MMCAP</label>
+            </value>
+            <value>
+                <fullName>Amerinet</fullName>
+                <default>false</default>
+                <label>Amerinet</label>
+            </value>
+            <value>
+                <fullName>Armada</fullName>
+                <default>false</default>
+                <label>Armada</label>
+            </value>
+            <value>
+                <fullName>MedAssets</fullName>
+                <default>false</default>
+                <label>MedAssets</label>
+            </value>
+            <value>
+                <fullName>Novation</fullName>
+                <default>false</default>
+                <label>Novation</label>
+            </value>
+            <value>
+                <fullName>HPG</fullName>
+                <default>false</default>
+                <label>HPG</label>
+            </value>
+            <value>
+                <fullName>PDM</fullName>
+                <default>false</default>
+                <label>PDM</label>
+            </value>
+            <value>
+                <fullName>NPC</fullName>
+                <default>false</default>
+                <label>NPC</label>
+            </value>
+            <value>
+                <fullName>PediaFed</fullName>
+                <default>false</default>
+                <label>PediaFed</label>
+            </value>
+            <value>
+                <fullName>USPPG</fullName>
+                <default>false</default>
+                <label>USPPG</label>
+            </value>
+            <value>
+                <fullName>Physician&#39;s Alliance</fullName>
+                <default>false</default>
+                <label>Physician&#39;s Alliance</label>
+            </value>
+            <value>
+                <fullName>College/University Umbrella</fullName>
+                <default>false</default>
+                <label>College/University Umbrella</label>
+            </value>
+            <value>
+                <fullName>Group Travel Umbrella</fullName>
+                <default>false</default>
+                <label>Group Travel Umbrella</label>
+            </value>
+            <value>
+                <fullName>City/County Umbrella</fullName>
+                <default>false</default>
+                <label>City/County Umbrella</label>
+            </value>
+            <value>
+                <fullName>Kaiser</fullName>
+                <default>false</default>
+                <label>Kaiser</label>
+            </value>
+            <value>
+                <fullName>State of TX</fullName>
+                <default>false</default>
+                <label>State of TX</label>
+            </value>
+            <value>
+                <fullName>State of CA</fullName>
+                <default>false</default>
+                <label>State of CA</label>
+            </value>
+            <value>
+                <fullName>FSS/Govt/DOD</fullName>
+                <default>false</default>
+                <label>FSS/Govt/DOD</label>
+            </value>
+            <value>
+                <fullName>Passport Health</fullName>
+                <default>false</default>
+                <label>Passport Health</label>
+            </value>
+            <value>
+                <fullName>TravelCare WorldWide</fullName>
+                <default>false</default>
+                <label>TravelCare WorldWide</label>
+            </value>
+            <value>
+                <fullName>Travel Clinics of America</fullName>
+                <default>false</default>
+                <label>Travel Clinics of America</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pricing_Campaign_2018__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Pricing Campaign_2018</inlineHelpText>
+    <label>Pricing Campaign_2018</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Gold (5% Vaxchora doses)</fullName>
+                <default>false</default>
+                <label>Gold (5% Vaxchora doses)</label>
+            </value>
+            <value>
+                <fullName>Gold Plus (5% Vaxchora + 35% Vivotif)</fullName>
+                <default>false</default>
+                <label>Gold Plus (5% Vaxchora + 35% Vivotif)</label>
+            </value>
+            <value>
+                <fullName>Purple (10% Vaxchora)</fullName>
+                <default>false</default>
+                <label>Purple (10% Vaxchora)</label>
+            </value>
+            <value>
+                <fullName>Purple Plus (10% Vaxchora + 50% Vivotif)</fullName>
+                <default>false</default>
+                <label>Purple Plus (10% Vaxchora + 50% Vivotif)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

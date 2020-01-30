@@ -1,0 +1,27 @@
+<aura:component >
+    <ltng:require scripts="{!join(',',
+                           $Resource.ChartAssets + '/ChartAssets/Chart.min.js',
+                           $Resource.ChartAssets + '/ChartAssets/utils.js')}"
+                  afterScriptsLoaded="{!c.loadChart}"/> 
+    
+
+
+    <aura:attribute name="cResetChart" type="Boolean" default="false"></aura:attribute>
+    <aura:attribute name="cDataObj" type="Integer[]"/>
+    <aura:attribute name="cLabels" type="String[]"/>    
+    <aura:attribute name = "cSection" type ="String" default="1"/>
+    <aura:attribute name = "cPName" type ="String" default="VIVOTIF"/>
+    <aura:attribute name = "cChartName" type ="String" default="VIVOTIF"/>
+    <aura:attribute name = "cColor" type ="String" default="blue"/>
+    <aura:attribute name = "cName1" type ="String" default="Vivotif Doses"/>     
+    
+    <!--************************************-->
+    <aura:handler name="change" value="{!v.cResetChart}" action="{!c.loadChart}" />
+    <aura:if isTrue="{!$Browser.formFactor=='DESKTOP'}">
+        <canvas id="{!'canvas' + v.cSection }" style="min-height:350px;max-height:800px;height:100%;width:50%"></canvas>
+    </aura:if>
+    
+	 <aura:if isTrue="{!$Browser.formFactor!='DESKTOP'}">
+     <canvas id="{!'canvas' + v.cSection }" style="min-height:700px;max-height:1400px;height:50%;width:50%"></canvas> 
+    </aura:if>
+</aura:component>

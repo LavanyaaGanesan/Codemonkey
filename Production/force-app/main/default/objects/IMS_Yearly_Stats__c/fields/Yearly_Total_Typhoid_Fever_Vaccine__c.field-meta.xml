@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Yearly_Total_Typhoid_Fever_Vaccine__c</fullName>
+    <externalId>false</externalId>
+    <formula>YTD_Vivotif_Total_Rollup__c +  Total_Yearly_Typhim_Doses__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Yearly Total Typhoid Fever Vaccine</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

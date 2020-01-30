@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X2H_PY_Vivotif_Doses__c</fullName>
+    <description>It is the last 6 months of the Vivotif doses from Jul 1-Dec 31 of the previous year. The CY2H vivotif goal is dependent on this field.</description>
+    <externalId>false</externalId>
+    <label>2H_PY Vivotif Doses</label>
+    <summarizedField>Sales_Data__c.Doses_Month_0__c</summarizedField>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Name</field>
+        <operation>equals</operation>
+        <value>VIVOTIF BERNA</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/1/2018</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Sales_Data__c.Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2018</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Sales_Data__c.Account__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

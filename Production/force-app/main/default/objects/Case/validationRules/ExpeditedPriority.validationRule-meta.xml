@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ExpeditedPriority</fullName>
+    <active>true</active>
+    <description>Expected Delivery date is a required field if &quot;Expedited&quot; is selected as the priority.</description>
+    <errorConditionFormula>And(
+ ISPICKVAL( Priority, &quot;Standard&quot;),
+ Not(ISBLANK( Expected_Delivery_Date__c ))
+)</errorConditionFormula>
+    <errorDisplayField>Expected_Delivery_Date__c</errorDisplayField>
+    <errorMessage>This field needs to be populated only when&quot;Priority field&quot; is &quot;Expedited&quot;.</errorMessage>
+</ValidationRule>

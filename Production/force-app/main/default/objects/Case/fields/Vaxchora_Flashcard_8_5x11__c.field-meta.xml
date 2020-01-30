@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Flashcard_8_5x11__c</fullName>
+    <description>PAX-US-0109-B [Vaxchora Flashcard (8.5x11)]</description>
+    <externalId>false</externalId>
+    <inlineHelpText>PAX-US-0109-B [Vaxchora Flashcard (8.5x11)]</inlineHelpText>
+    <label>Vaxchora Flashcard (8.5x11)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

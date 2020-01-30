@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ManagersEmailIdInCC__c</fullName>
+    <description>Add Managers Manager Email Id</description>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>ManagersEmailIdInCC</label>
+    <required>false</required>
+    <type>TextArea</type>
+</CustomField>

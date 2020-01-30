@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vaxchora_Call_Stage__c</fullName>
+    <externalId>false</externalId>
+    <label>Vaxchora Call Stage</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Discussed__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Disease/Product Introduction</fullName>
+                <default>false</default>
+                <label>Disease/Product Introduction</label>
+            </value>
+            <value>
+                <fullName>Meaningful Dialogue</fullName>
+                <default>false</default>
+                <label>Meaningful Dialogue</label>
+            </value>
+            <value>
+                <fullName>Objection Handling</fullName>
+                <default>false</default>
+                <label>Objection Handling</label>
+            </value>
+            <value>
+                <fullName>Commitment Gained</fullName>
+                <default>false</default>
+                <label>Commitment Gained</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Disease/Product Introduction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Meaningful Dialogue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Objection Handling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <valueName>Commitment Gained</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

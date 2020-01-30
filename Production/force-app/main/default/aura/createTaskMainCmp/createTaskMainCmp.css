@@ -1,0 +1,64 @@
+.THIS .slds-p-around_small {
+    padding-top:5px;padding-bottom:5px;
+}
+.THIS .slds-section-title--divider{
+    background:#f0eef5;
+    font-weight:600;
+}
+
+.THIS .slds-task__footer {
+    border-top: 2px solid rgb(217, 219, 221);
+    padding: .75rem 1rem;
+    text-align: right;
+}
+
+.THIS .errorText{
+    color:rgb(194, 57, 52);
+    display:none;
+}
+
+.THIS ._error{;
+    display:block;
+}
+
+.THIS .slds-box-padding{
+    padding-bottom:15px;
+}
+
+.THIS .width110{
+    width:110%;
+}
+.THIS .hideLabel label:first-child {
+      display : none;
+      visibility : hidden;
+}
+
+.THIS .paddingLeft25{
+    padding-left:23px;
+}
+.THIS .paddingLeft15{
+    padding-left:15px;
+}
+
+.THIS .width40{
+    width:40px;
+}
+.THIS .top-30
+{
+    top:-32px;
+    position:relative;
+}
+.THIS .top-25
+{
+    top:-25px;
+    position:relative;
+}
+.THIS .top-10
+{
+    top:-8px;
+    position:relative;
+}
+.THIS .top20
+{
+    padding-top:25px;
+}

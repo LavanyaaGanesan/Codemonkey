@@ -1,0 +1,25 @@
+<apex:page standardController="Sales_Planner__c">
+<apex:includeLightning />
+        <apex:includeScript value="/lightning/lightning.out.js" />
+
+
+    <div id="hist" />
+
+    <script style="float:left;">
+        $Lightning.use("c:AccountHierarchyApp", function() {
+          $Lightning.createComponent("c:AccountHierarchyCmp",
+              { "recordId" : "{!Sales_Planner__c.id}"},
+              "hist",
+              function(cmp) {
+                  
+                   console.log("Component created!");
+                    console.log(cmp);
+                    console.log('{!Sales_Planner__c.id}----');
+                  //cmp.set("v.recordId", "{!Sales_Planner__c.id}");
+                //console.log("button was created");
+                // do some stuff
+              }
+          );
+        });
+    </script>
+</apex:page>

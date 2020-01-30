@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_Doses__c</fullName>
+    <description>This is for Vaxchora Shocking Stocking Campaign Program-2017.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is required if the Opt-in Checkbox is checked ( Vaxchora Shocking Stocking Campaign program-2017)</inlineHelpText>
+    <label>Requested Doses</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

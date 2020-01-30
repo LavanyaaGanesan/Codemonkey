@@ -1,0 +1,14 @@
+.THIS .leftPaddingClass {
+    padding-left: 2rem;
+}
+ 
+.THIS .pillSize{
+ width:100%;
+}
+
+.THIS .show{
+    visibility:visible;
+}
+.THIS .hide{
+    visibility:hidden;
+}

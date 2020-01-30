@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Awareness_MMWR__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is for the customers who viewed the MMWR from PaxvaxConnect. com or through  email.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is for the customers who viewed the MMWR from PaxvaxConnect. com or through  email.</inlineHelpText>
+    <label>Awareness_MMWR</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

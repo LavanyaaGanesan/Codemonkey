@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CY_Vaxchora_Doses_Direct_YTD__c</fullName>
+    <externalId>false</externalId>
+    <label>CY Vaxchora Doses Direct YTD</label>
+    <summarizedField>Daily_Sales_Data__c.Quantity__c</summarizedField>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2020</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2020</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.ShipTo_Type__c</field>
+        <operation>equals</operation>
+        <value>Direct</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Daily_Sales_Data__c.Is_Deleted__c</field>
+        <operation>notEqual</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Daily_Sales_Data__c.Account__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

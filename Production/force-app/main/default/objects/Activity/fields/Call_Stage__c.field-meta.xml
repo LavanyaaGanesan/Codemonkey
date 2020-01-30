@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Call_Stage__c</fullName>
+    <defaultValue>&quot;Blank&quot;</defaultValue>
+    <description>This field controls the Account Rating field.</description>
+    <externalId>false</externalId>
+    <label>Vivotif Call Stage</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Discussed__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Disease Education</fullName>
+                <default>false</default>
+                <label>Disease Education</label>
+            </value>
+            <value>
+                <fullName>Product Introduction</fullName>
+                <default>false</default>
+                <label>Product Introduction</label>
+            </value>
+            <value>
+                <fullName>Product Message Accepted</fullName>
+                <default>false</default>
+                <label>Product Message Accepted</label>
+            </value>
+            <value>
+                <fullName>Overcoming Operations/Policy</fullName>
+                <default>false</default>
+                <label>Overcoming Operations/Policy</label>
+            </value>
+            <value>
+                <fullName>Initial Purchase</fullName>
+                <default>false</default>
+                <label>Initial Purchase</label>
+            </value>
+            <value>
+                <fullName>Administered First Dose</fullName>
+                <default>false</default>
+                <label>Administered First Dose</label>
+            </value>
+            <value>
+                <fullName>First Reorder</fullName>
+                <default>false</default>
+                <label>First Reorder</label>
+            </value>
+            <value>
+                <fullName>Adopting</fullName>
+                <default>false</default>
+                <label>Adopting</label>
+            </value>
+            <value>
+                <fullName>Believer</fullName>
+                <default>false</default>
+                <label>Believer</label>
+            </value>
+            <value>
+                <fullName>Closed/Not Viable</fullName>
+                <default>false</default>
+                <label>Closed/Not Viable</label>
+            </value>
+            <value>
+                <fullName>Nurse Educator Clinical Program</fullName>
+                <default>false</default>
+                <label>Nurse Educator Clinical Program</label>
+            </value>
+            <value>
+                <fullName>Disease/Product Introduction</fullName>
+                <default>false</default>
+                <label>Disease/Product Introduction</label>
+            </value>
+            <value>
+                <fullName>Meaningful Dialogue</fullName>
+                <default>false</default>
+                <label>Meaningful Dialogue</label>
+            </value>
+            <value>
+                <fullName>Objection Handling</fullName>
+                <default>false</default>
+                <label>Objection Handling</label>
+            </value>
+            <value>
+                <fullName>Commitment Gained</fullName>
+                <default>false</default>
+                <label>Commitment Gained</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Disease/Product Introduction</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Meaningful Dialogue</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Objection Handling</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Vivotif and Vaxchora</controllingFieldValue>
+            <controllingFieldValue>Vivotif</controllingFieldValue>
+            <valueName>Commitment Gained</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

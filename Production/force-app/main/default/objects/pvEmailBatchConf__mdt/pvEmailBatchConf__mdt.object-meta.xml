@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>In pvEmailBatchConf to set all configuration data</description>
+    <label>pvEmailBatchConf</label>
+    <pluralLabel>pvEmailBatchConfs</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

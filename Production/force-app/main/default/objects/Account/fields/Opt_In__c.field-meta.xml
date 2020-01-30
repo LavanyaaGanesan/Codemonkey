@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opt_In__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is for Vaxchora Stocking Campaign program- 2017.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check the box if the account is participating in the Vaxchora Shocking Stocking Campaign 2017.</inlineHelpText>
+    <label>Opt_In</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

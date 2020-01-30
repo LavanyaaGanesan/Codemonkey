@@ -1,0 +1,54 @@
+<apex:page standardController="Sales_Planner__c">
+    <apex:includeScript value="{!URLFOR($Resource.fullCalendar, '/node_modules/jquery/dist/jquery.min.js')}"  />
+    <apex:includeLightning />
+    <apex:includeScript value="/lightning/lightning.out.js" />
+    
+    
+    <div id="hist" />
+    
+    <script>
+    console.log('{!Sales_Planner__c.id}----');
+    $Lightning.use("c:MobileContactsRelatedApp", function() {
+        $Lightning.createComponent("c:MobileContactsRelated",
+                                   { "recordId" : "{!Sales_Planner__c.id}"},
+                                   "hist",
+                                   function(cmp) {
+                                       
+                                       console.log("Component created!");
+                                       console.log(cmp);
+                                       console.log('{!Sales_Planner__c.id}----');
+                                       //cmp.set("v.recordId", "{!Sales_Planner__c.id}");
+                                       //console.log("button was created");
+                                       // do some stuff
+                                   }
+                                  );
+    });
+    
+    /*function setSticky(){
+        var myVar;
+        var cnt=0;
+        try{
+            myVar = setInterval(function(){
+                cnt+=1;
+                $('body').scroll(function() {
+                    clearInterval(myVar);
+                    var height = $('body').scrollTop();
+                    if (height > 100) {
+                        $(".stickyButton").addClass("stickyButtonFixed");
+                    } else {
+                        $(".stickyButton").removeClass("stickyButtonFixed")
+                    }
+                });
+                if (cnt>4){
+                    clearInterval(myVar);
+                }
+            }, 2000);
+        }catch(e){
+            if (cnt>4){
+                clearInterval(myVar);
+            }
+        }
+    }
+    setSticky();*/
+    </script>
+</apex:page>

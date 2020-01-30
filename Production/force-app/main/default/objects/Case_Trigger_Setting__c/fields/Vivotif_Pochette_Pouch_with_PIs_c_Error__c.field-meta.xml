@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vivotif_Pochette_Pouch_with_PIs_c_Error__c</fullName>
+    <externalId>false</externalId>
+    <label>Vivotif_Pochette_Pouch_with_PIs__c Error</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>
